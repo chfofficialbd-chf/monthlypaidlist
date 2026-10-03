@@ -393,7 +393,7 @@
 
   <script>
 
-    function checkPayment() {
+    async function checkPayment() {
 
       const chfId =
         document.getElementById("chfId").value.trim();
@@ -405,9 +405,38 @@
         return;
       }
 
-      alert(
-        "Payment checking system will be connected here."
-      );
+      const apiUrl =
+        "https://script.google.com/macros/s/AKfycbwxXusjp382Z9aeuPxuIpLJYGx8FJd0qH_C6eBcdGuGoEa41ISnle1Ucp1SE-voIw3ruA/exec?id="
+        + encodeURIComponent(chfId);
+
+      try {
+
+        const response = await fetch(apiUrl);
+
+        const data = await response.json();
+
+        if (!data.success) {
+
+          alert(data.message);
+
+          return;
+        }
+
+        alert(
+          "CHF ID: " + data.chfId +
+          "\nName: " + data.memberName +
+          "\nTotal Payments: " + data.totalPayments
+        );
+
+      } catch (error) {
+
+        alert(
+          "Unable to connect to payment system."
+        );
+
+        console.error(error);
+
+      }
 
     }
 
