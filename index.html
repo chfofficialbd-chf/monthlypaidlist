@@ -16,8 +16,8 @@
     body {
       font-family: Arial, Helvetica, sans-serif;
       min-height: 100vh;
-      background: #f4f7fb;
-      color: #1f2937;
+      background: #f5f7f9;
+      color: #222;
     }
 
     /* HEADER */
@@ -25,7 +25,7 @@
     .header {
       background: #ffffff;
       border-bottom: 1px solid #e5e7eb;
-      padding: 18px 7%;
+      padding: 15px 7%;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -34,169 +34,156 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 15px;
     }
 
-    .logo {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      background: #0b6b4f;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      font-size: 15px;
+    .brand img {
+      width: 68px;
+      height: 68px;
+      object-fit: contain;
     }
 
     .brand-text h2 {
-      font-size: 18px;
-      color: #12372a;
+      font-size: 21px;
+      color: #173b2f;
+      margin-bottom: 4px;
     }
 
     .brand-text p {
-      font-size: 12px;
-      color: #718096;
-      margin-top: 3px;
+      font-size: 13px;
+      color: #777;
     }
 
     .header-right {
+      color: #777;
       font-size: 13px;
-      color: #64748b;
     }
 
     /* MAIN */
 
     .main {
-      min-height: calc(100vh - 85px);
+      min-height: calc(100vh - 100px);
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 45px 20px;
     }
 
-    .main-card {
+    .portal {
       width: 100%;
-      max-width: 920px;
-      background: #ffffff;
+      max-width: 1000px;
+      background: #fff;
       border-radius: 18px;
-      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
       overflow: hidden;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1.05fr 0.95fr;
     }
 
     /* LEFT */
 
-    .intro {
-      background: #0b6b4f;
+    .welcome {
+      padding: 60px 55px;
+      background: linear-gradient(145deg, #0d6b50, #07533e);
       color: white;
-      padding: 55px 48px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      position: relative;
     }
 
-    .small-title {
-      font-size: 13px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      opacity: 0.85;
-      margin-bottom: 16px;
+    .welcome:after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 30px solid rgba(255,255,255,0.04);
+      right: -70px;
+      bottom: -70px;
     }
 
-    .intro h1 {
+    .welcome img {
+      width: 110px;
+      height: 110px;
+      object-fit: contain;
+      background: white;
+      border-radius: 14px;
+      padding: 8px;
+      margin-bottom: 28px;
+    }
+
+    .welcome h1 {
       font-size: 34px;
       line-height: 1.2;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
-    .intro p {
+    .welcome p {
       font-size: 15px;
       line-height: 1.7;
-      color: #e4f4ed;
-      margin-bottom: 30px;
+      color: #e2f0eb;
+      max-width: 450px;
+      margin-bottom: 28px;
     }
 
-    .points {
-      display: flex;
-      flex-direction: column;
-      gap: 13px;
+    .line {
+      height: 2px;
+      width: 55px;
+      background: #f1c40f;
+      margin-bottom: 25px;
     }
 
-    .point {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .welcome-info {
       font-size: 14px;
-      color: #f0faf6;
-    }
-
-    .check {
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.18);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
+      line-height: 1.8;
+      color: #e4f3ee;
     }
 
     /* RIGHT */
 
-    .form-area {
-      padding: 55px 48px;
+    .check-area {
+      padding: 60px 55px;
       display: flex;
       align-items: center;
     }
 
-    .form-box {
+    .check-box {
       width: 100%;
     }
 
-    .form-box h2 {
-      font-size: 27px;
-      color: #1f2937;
-      margin-bottom: 9px;
+    .check-box h2 {
+      font-size: 28px;
+      color: #222;
+      margin-bottom: 10px;
     }
 
-    .form-box .subtitle {
+    .check-box .sub {
+      color: #777;
       font-size: 14px;
-      color: #718096;
       line-height: 1.6;
-      margin-bottom: 30px;
+      margin-bottom: 32px;
     }
 
     label {
       display: block;
       font-size: 13px;
       font-weight: bold;
-      color: #374151;
+      color: #333;
       margin-bottom: 9px;
     }
 
     input {
       width: 100%;
       height: 52px;
-      border: 1px solid #d7dee7;
-      border-radius: 10px;
+      border: 1px solid #d8dee5;
+      border-radius: 9px;
       padding: 0 16px;
       font-size: 16px;
-      color: #1f2937;
       outline: none;
-      background: #ffffff;
       transition: 0.2s;
     }
 
-    input::placeholder {
-      color: #a0aec0;
-    }
-
     input:focus {
-      border-color: #0b6b4f;
-      box-shadow: 0 0 0 3px rgba(11, 107, 79, 0.1);
+      border-color: #0d6b50;
+      box-shadow: 0 0 0 3px rgba(13,107,80,0.10);
     }
 
     button {
@@ -204,8 +191,8 @@
       height: 52px;
       margin-top: 17px;
       border: none;
-      border-radius: 10px;
-      background: #0b6b4f;
+      border-radius: 9px;
+      background: #0d6b50;
       color: white;
       font-size: 15px;
       font-weight: bold;
@@ -214,64 +201,82 @@
     }
 
     button:hover {
-      background: #09583f;
+      background: #09563f;
     }
 
-    .note {
-      margin-top: 20px;
-      padding: 13px;
+    .help {
+      margin-top: 22px;
+      padding: 15px;
       background: #f5f8f7;
-      border-radius: 9px;
-      color: #6b7280;
+      border-left: 3px solid #0d6b50;
+      border-radius: 6px;
+      color: #666;
       font-size: 12px;
-      line-height: 1.5;
-      text-align: center;
+      line-height: 1.6;
     }
 
     /* FOOTER */
 
     .footer {
       text-align: center;
-      color: #8a94a3;
+      color: #888;
       font-size: 12px;
-      padding: 0 20px 20px;
+      padding-bottom: 18px;
     }
 
     /* MOBILE */
 
-    @media (max-width: 750px) {
+    @media (max-width: 760px) {
 
       .header {
-        padding: 15px 20px;
+        padding: 12px 20px;
       }
 
       .header-right {
         display: none;
       }
 
+      .brand img {
+        width: 55px;
+        height: 55px;
+      }
+
+      .brand-text h2 {
+        font-size: 16px;
+      }
+
+      .brand-text p {
+        font-size: 11px;
+      }
+
       .main {
-        padding: 25px 15px;
+        padding: 20px 14px;
         align-items: flex-start;
       }
 
-      .main-card {
+      .portal {
         grid-template-columns: 1fr;
       }
 
-      .intro {
-        padding: 35px 28px;
+      .welcome {
+        padding: 40px 30px;
       }
 
-      .intro h1 {
+      .welcome img {
+        width: 85px;
+        height: 85px;
+      }
+
+      .welcome h1 {
         font-size: 28px;
       }
 
-      .form-area {
-        padding: 35px 28px;
+      .check-area {
+        padding: 40px 30px;
       }
 
-      .form-box h2 {
-        font-size: 24px;
+      .check-box h2 {
+        font-size: 25px;
       }
     }
   </style>
@@ -285,9 +290,10 @@
 
     <div class="brand">
 
-      <div class="logo">
-        CHF
-      </div>
+      <img
+        src="https://raw.githubusercontent.com/chfofficialbd-chf/monthlypaidlist/main/Logo%20CHF.jpg"
+        alt="CHF Logo"
+      >
 
       <div class="brand-text">
         <h2>Charity Hope Foundation</h2>
@@ -297,7 +303,7 @@
     </div>
 
     <div class="header-right">
-      Monthly Membership Payment
+      Member Monthly Payment Portal
     </div>
 
   </header>
@@ -307,15 +313,18 @@
 
   <main class="main">
 
-    <div class="main-card">
+    <div class="portal">
 
-      <!-- LEFT SIDE -->
+      <!-- WELCOME -->
 
-      <section class="intro">
+      <section class="welcome">
 
-        <div class="small-title">
-          Member Service
-        </div>
+        <img
+          src="https://raw.githubusercontent.com/chfofficialbd-chf/monthlypaidlist/main/Logo%20CHF.jpg"
+          alt="CHF Logo"
+        >
+
+        <div class="line"></div>
 
         <h1>
           CHF MEMBER<br>
@@ -324,46 +333,29 @@
         </h1>
 
         <p>
-          Welcome to the CHF Member Portal.
-          Check your monthly membership payment,
-          payment history and outstanding dues using
-          your CHF Member ID.
+          Welcome to the Charity Hope Foundation
+          member payment portal.
         </p>
 
-        <div class="points">
-
-          <div class="point">
-            <span class="check">✓</span>
-            Monthly payment information
-          </div>
-
-          <div class="point">
-            <span class="check">✓</span>
-            Payment history
-          </div>
-
-          <div class="point">
-            <span class="check">✓</span>
-            Due month information
-          </div>
-
+        <div class="welcome-info">
+          Check your monthly membership payment,
+          payment history and due months using
+          your CHF Member ID.
         </div>
 
       </section>
 
 
-      <!-- RIGHT SIDE -->
+      <!-- CHECK -->
 
-      <section class="form-area">
+      <section class="check-area">
 
-        <div class="form-box">
+        <div class="check-box">
 
-          <h2>
-            Check Payment
-          </h2>
+          <h2>Check Your Payment</h2>
 
-          <p class="subtitle">
-            Enter your CHF Member ID to view
+          <p class="sub">
+            Enter your CHF Member ID below to view
             your monthly payment information.
           </p>
 
@@ -372,9 +364,9 @@
           </label>
 
           <input
-            type="text"
             id="chfId"
-            placeholder="Enter your CHF ID, e.g. CHF-49"
+            type="text"
+            placeholder="Example: CHF-49"
             autocomplete="off"
           >
 
@@ -382,9 +374,10 @@
             CHECK PAYMENT
           </button>
 
-          <div class="note">
-            Please enter your CHF ID correctly to
-            view your membership payment information.
+          <div class="help">
+            Please enter your CHF ID correctly.
+            Your payment details will appear after
+            the payment system is connected.
           </div>
 
         </div>
@@ -396,10 +389,8 @@
   </main>
 
 
-  <!-- FOOTER -->
-
   <div class="footer">
-    © 2026 Charity Hope Foundation (CHF). All Rights Reserved.
+    © 2026 Charity Hope Foundation (CHF) · All Rights Reserved
   </div>
 
 
@@ -420,6 +411,7 @@
       alert(
         "Payment checking system will be connected here.\n\nCHF ID: " + id
       );
+
     }
 
   </script>
