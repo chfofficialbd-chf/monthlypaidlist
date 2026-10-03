@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,11 +7,10 @@
 <title>CHF Member Monthly TK Check Portal</title>
 
 <style>
-@font-face {
-  font-family: "CoastalBlocks";
-  src: url("Coastal Blocks Demo.otf") format("opentype");
-  font-weight: normal;
-}
+
+/* =========================
+   BASIC
+========================= */
 
 * {
   margin: 0;
@@ -21,393 +19,89 @@
 }
 
 body {
+  font-family: "Segoe UI", Arial, sans-serif;
   min-height: 100vh;
-  font-family: Arial, sans-serif;
-  background:
-    radial-gradient(circle at 10% 10%, rgba(52,152,219,.18), transparent 30%),
-    radial-gradient(circle at 90% 90%, rgba(46,204,113,.15), transparent 30%),
-    linear-gradient(135deg, #07111f, #102a43);
-  color: white;
+  background: #f5f8fc;
+  color: #142b3f;
   overflow-x: hidden;
 }
 
-/* NAVBAR */
+/* =========================
+   BACKGROUND
+========================= */
+
+.page {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(2px);
+  pointer-events: none;
+}
+
+.circle-one {
+  width: 420px;
+  height: 420px;
+  background: rgba(23, 162, 184, 0.10);
+  top: -180px;
+  left: -120px;
+}
+
+.circle-two {
+  width: 360px;
+  height: 360px;
+  background: rgba(35, 102, 190, 0.09);
+  right: -120px;
+  bottom: -100px;
+}
+
+/* =========================
+   NAVBAR
+========================= */
 
 .navbar {
   width: 100%;
-  padding: 24px 7%;
+  max-width: 1180px;
+  margin: auto;
+  padding: 24px 25px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  position: relative;
+  z-index: 5;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 13px;
 }
 
 .logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
+  width: 52px;
+  height: 52px;
 
-.logo-circle {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #28d7c5, #3498db);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  font-size: 16px;
-  box-shadow: 0 0 25px rgba(40,215,197,.3);
-}
-
-.logo-text {
-  font-size: 14px;
-  letter-spacing: 2px;
-  font-weight: bold;
-}
-
-.nav-button {
-  border: 1px solid rgba(255,255,255,.25);
-  padding: 10px 20px;
-  border-radius: 30px;
-  color: white;
-  text-decoration: none;
-  font-size: 13px;
-  transition: .3s;
-}
-
-.nav-button:hover {
-  background: white;
-  color: #102a43;
-}
-
-/* HERO */
-
-.hero {
-  min-height: calc(100vh - 96px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 7% 80px;
-}
-
-.hero-content {
-  width: 100%;
-  max-width: 900px;
-  text-align: center;
-}
-
-.small-title {
-  font-size: 13px;
-  letter-spacing: 5px;
-  color: #67e8dc;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-}
-
-h1 {
-  font-family: "CoastalBlocks", Arial, sans-serif;
-  font-size: clamp(45px, 7vw, 85px);
-  line-height: 1;
-  letter-spacing: 2px;
-  margin-bottom: 22px;
-  text-transform: uppercase;
-}
-
-.gradient-text {
-  background: linear-gradient(90deg, #ffffff, #65e6d7, #58b8ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.subtitle {
-  max-width: 650px;
-  margin: auto;
-  color: #b6c8d8;
-  font-size: 16px;
-  line-height: 1.7;
-}
-
-/* SEARCH CARD */
-
-.search-card {
-  max-width: 520px;
-  margin: 42px auto 0;
-  padding: 10px;
-  border-radius: 20px;
-  background: rgba(255,255,255,.09);
-  border: 1px solid rgba(255,255,255,.16);
-  backdrop-filter: blur(15px);
-  box-shadow: 0 20px 60px rgba(0,0,0,.25);
-}
-
-.search-inner {
-  background: rgba(3,15,28,.65);
   border-radius: 15px;
-  padding: 25px;
-}
 
-.input-label {
-  display: block;
-  text-align: left;
-  color: #a8bdcd;
-  font-size: 13px;
-  margin-bottom: 9px;
-}
-
-.input-row {
   display: flex;
-  gap: 10px;
-}
+  align-items: center;
+  justify-content: center;
 
-.input-row input {
-  flex: 1;
-  min-width: 0;
-  padding: 15px;
-  border: 1px solid rgba(255,255,255,.15);
-  border-radius: 11px;
-  background: rgba(255,255,255,.06);
-  color: white;
-  outline: none;
-  font-size: 15px;
-}
-
-.input-row input::placeholder {
-  color: #718698;
-}
-
-.input-row input:focus {
-  border-color: #52d9cd;
-}
-
-.check-button {
-  padding: 15px 22px;
-  border: none;
-  border-radius: 11px;
-  background: linear-gradient(135deg, #28d7c5, #3498db);
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: .3s;
-  white-space: nowrap;
-}
-
-.check-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(40,215,197,.3);
-}
-
-/* FEATURES */
-
-.features {
-  margin-top: 45px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-}
-
-.feature {
-  padding: 18px;
-  border-radius: 16px;
-  background: rgba(255,255,255,.055);
-  border: 1px solid rgba(255,255,255,.10);
-}
-
-.feature-icon {
-  font-size: 22px;
-  margin-bottom: 9px;
-}
-
-.feature h3 {
-  font-size: 14px;
-  margin-bottom: 5px;
-}
-
-.feature p {
-  color: #8fa7b9;
-  font-size: 11px;
-  line-height: 1.5;
-}
-
-/* FOOTER */
-
-.footer {
-  margin-top: 45px;
-  color: #70889a;
-  font-size: 11px;
-}
-
-/* MOBILE */
-
-@media (max-width: 650px) {
-
-  .navbar {
-    padding: 18px 5%;
-  }
-
-  .nav-button {
-    display: none;
-  }
-
-  .hero {
-    padding: 35px 5% 60px;
-  }
-
-  h1 {
-    font-size: 48px;
-  }
-
-  .input-row {
-    flex-direction: column;
-  }
-
-  .check-button {
-    width: 100%;
-  }
-
-  .features {
-    grid-template-columns: 1fr;
-  }
-}
-</style>
-</head>
-
-<body>
-
-<header class="navbar">
-
-  <div class="logo">
-    <div class="logo-circle">CHF</div>
-    <div class="logo-text">
-      CHARITY HOPE FOUNDATION
-    </div>
-  </div>
-
-  <a href="#" class="nav-button">
-    MEMBER PORTAL
-  </a>
-
-</header>
-
-
-<main class="hero">
-
-  <div class="hero-content">
-
-    <div class="small-title">
-      Charity Hope Foundation
-    </div>
-
-    <h1>
-      <span class="gradient-text">
-        CHF MEMBER<br>
-        MONTHLY TK CHECK PORTAL
-      </span>
-    </h1>
-
-    <p class="subtitle">
-      Check your monthly membership payment,
-      payment history and outstanding due months
-      using your CHF Member ID.
-    </p>
-
-
-    <div class="search-card">
-
-      <div class="search-inner">
-
-        <label class="input-label">
-          ENTER YOUR CHF ID
-        </label>
-
-        <div class="input-row">
-
-          <input
-            type="text"
-            id="chfId"
-            placeholder="Example: CHF-49"
-            autocomplete="off"
-          >
-
-          <button
-            class="check-button"
-            onclick="checkPayment()">
-            CHECK PAYMENT
-          </button>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <div class="features">
-
-      <div class="feature">
-        <div class="feature-icon">💳</div>
-        <h3>Monthly Payment</h3>
-        <p>
-          View your monthly CHF payment information.
-        </p>
-      </div>
-
-      <div class="feature">
-        <div class="feature-icon">📋</div>
-        <h3>Payment History</h3>
-        <p>
-          See your previous payment records.
-        </p>
-      </div>
-
-      <div class="feature">
-        <div class="feature-icon">⚠️</div>
-        <h3>Due Months</h3>
-        <p>
-          Find your outstanding monthly payments.
-        </p>
-      </div>
-
-    </div>
-
-
-    <div class="footer">
-      © Charity Hope Foundation (CHF)
-    </div>
-
-  </div>
-
-</main>
-
-
-<script>
-
-function checkPayment() {
-
-  const chfId =
-    document.getElementById("chfId").value.trim();
-
-  if (chfId === "") {
-
-    alert("Please enter your CHF ID.");
-
-    return;
-  }
-
-  /*
-    Google Sheet payment system
-    will be connected here later.
-  */
-
-  alert(
-    "Payment system will be connected soon.\n\nCHF ID: "
-    + chfId
+  background: linear-gradient(
+    135deg,
+    #087fa3,
+    #20b89a
   );
 
-}
+  color: white;
+  font-size: 17px;
+  font-weight: 800;
 
-</script>
-
-</body>
-</html>
-```
+  box-shadow:
+    0 10px 25px rgba(8, 127
