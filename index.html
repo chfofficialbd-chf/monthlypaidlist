@@ -1,14 +1,399 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>CHF Test</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>CHF MEMBER MONTHLY TK CHECK PORTAL</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255, 193, 7, 0.18), transparent 30%),
+        radial-gradient(circle at 85% 80%, rgba(0, 188, 212, 0.18), transparent 30%),
+        linear-gradient(135deg, #07111f, #10243b 50%, #07111f);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 25px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1050px;
+      min-height: 620px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 28px;
+      overflow: hidden;
+      backdrop-filter: blur(18px);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+    }
+
+    /* LEFT SIDE */
+
+    .left {
+      padding: 55px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 193, 7, 0.13),
+          rgba(0, 188, 212, 0.08)
+        );
+    }
+
+    .logo {
+      width: 70px;
+      height: 70px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #ffc107, #ff9800);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 27px;
+      font-weight: bold;
+      color: #101820;
+      margin-bottom: 28px;
+      box-shadow: 0 12px 30px rgba(255, 193, 7, 0.25);
+    }
+
+    .brand {
+      font-size: 16px;
+      letter-spacing: 2px;
+      color: #ffc107;
+      font-weight: bold;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: 42px;
+      line-height: 1.12;
+      letter-spacing: -1px;
+      margin-bottom: 22px;
+    }
+
+    .description {
+      color: #c9d5e3;
+      font-size: 16px;
+      line-height: 1.7;
+      max-width: 470px;
+      margin-bottom: 32px;
+    }
+
+    .features {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .feature {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      color: #dce7f2;
+      font-size: 14px;
+    }
+
+    .feature-icon {
+      width: 35px;
+      height: 35px;
+      border-radius: 11px;
+      background: rgba(255, 193, 7, 0.14);
+      border: 1px solid rgba(255, 193, 7, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* RIGHT SIDE */
+
+    .right {
+      padding: 55px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(3, 12, 24, 0.35);
+    }
+
+    .card {
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .card-title {
+      font-size: 27px;
+      margin-bottom: 9px;
+    }
+
+    .card-subtitle {
+      color: #9fb0c2;
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      color: #d9e3ed;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .input-box {
+      position: relative;
+      margin-bottom: 18px;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 17px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+      opacity: 0.8;
+    }
+
+    input {
+      width: 100%;
+      padding: 17px 18px 17px 50px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      outline: none;
+      background: rgba(255, 255, 255, 0.08);
+      color: white;
+      font-size: 16px;
+      transition: 0.25s;
+    }
+
+    input::placeholder {
+      color: #8192a5;
+    }
+
+    input:focus {
+      border-color: #ffc107;
+      background: rgba(255, 255, 255, 0.11);
+      box-shadow: 0 0 0 4px rgba(255, 193, 7, 0.08);
+    }
+
+    .check-btn {
+      width: 100%;
+      padding: 17px;
+      border: none;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #ffc107, #ff9800);
+      color: #111820;
+      font-size: 15px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: 0.25s;
+      box-shadow: 0 12px 25px rgba(255, 152, 0, 0.2);
+    }
+
+    .check-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 30px rgba(255, 152, 0, 0.3);
+    }
+
+    .check-btn:active {
+      transform: translateY(0);
+    }
+
+    .info-box {
+      margin-top: 25px;
+      padding: 17px;
+      border-radius: 14px;
+      background: rgba(0, 188, 212, 0.08);
+      border: 1px solid rgba(0, 188, 212, 0.15);
+      color: #b8dce3;
+      font-size: 12px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 14px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      color: #718399;
+      font-size: 11px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+
+      body {
+        padding: 15px;
+        align-items: flex-start;
+      }
+
+      .container {
+        grid-template-columns: 1fr;
+        margin-top: 10px;
+      }
+
+      .left {
+        padding: 38px 28px;
+      }
+
+      .right {
+        padding: 38px 28px;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+
+      .description {
+        font-size: 14px;
+      }
+
+      .footer {
+        position: relative;
+        margin-top: 12px;
+        bottom: auto;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-  <h1>CHF MEMBER MONTHLY TK CHECK PORTAL</h1>
+  <div class="container">
 
-  <p>Website is working.</p>
+    <!-- LEFT -->
+    <div class="left">
+
+      <div class="logo">
+        CHF
+      </div>
+
+      <div class="brand">
+        Charity Hope Foundation
+      </div>
+
+      <h1>
+        MEMBER MONTHLY<br>
+        TK CHECK PORTAL
+      </h1>
+
+      <p class="description">
+        Check your CHF monthly membership payment status,
+        payment history and outstanding due months using your
+        CHF Member ID.
+      </p>
+
+      <div class="features">
+
+        <div class="feature">
+          <div class="feature-icon">✓</div>
+          <span>Monthly payment status</span>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">₹</div>
+          <span>Payment history & amount</span>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">📅</div>
+          <span>Due months information</span>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- RIGHT -->
+    <div class="right">
+
+      <div class="card">
+
+        <div class="card-title">
+          Check Your Payment
+        </div>
+
+        <div class="card-subtitle">
+          Enter your CHF Member ID below to view
+          your monthly membership payment information.
+        </div>
+
+        <label for="chfId">
+          ENTER YOUR CHF ID
+        </label>
+
+        <div class="input-box">
+
+          <span class="input-icon">🪪</span>
+
+          <input
+            type="text"
+            id="chfId"
+            placeholder="e.g. CHF-49"
+            autocomplete="off"
+          >
+
+        </div>
+
+        <button class="check-btn" onclick="checkPayment()">
+          CHECK PAYMENT
+        </button>
+
+        <div class="info-box">
+          🔒 Your membership information is securely
+          checked using your CHF Member ID.
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="footer">
+    © 2026 Charity Hope Foundation (CHF) · Member Portal
+  </div>
+
+
+  <script>
+
+    function checkPayment() {
+
+      const id = document.getElementById("chfId").value.trim();
+
+      if (id === "") {
+        alert("Please enter your CHF ID.");
+        return;
+      }
+
+      alert(
+        "Payment checking system will be connected here.\n\nCHF ID: " + id
+      );
+
+    }
+
+  </script>
 
 </body>
 </html>
