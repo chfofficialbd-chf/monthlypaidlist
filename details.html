@@ -1,718 +1,1294 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>CHF Member Payment Details</title>
-
-  <style>
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: linear-gradient(135deg, #eef7ff, #f8fbff);
-      color: #17324d;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 850px;
-      margin: 35px auto;
-      padding: 15px;
-    }
-
-    .card {
-      background: white;
-      border-radius: 24px;
-      padding: 30px;
-      box-shadow: 0 15px 45px rgba(0, 60, 100, 0.12);
-      border: 1px solid #e5eef7;
-    }
-
-    .top {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .logo {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid #e5eef7;
-      box-shadow: 0 8px 20px rgba(11, 120, 181, 0.18);
-      margin-bottom: 15px;
-    }
-
-    .title {
-      font-size: 27px;
-      font-weight: 800;
-      color: #123b5d;
-      margin-bottom: 7px;
-    }
-
-    .subtitle {
-      font-size: 14px;
-      color: #638096;
-    }
-
-    .member-info {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-      margin-bottom: 25px;
-    }
-
-    .info-box {
-      background: #f8fbfd;
-      border: 1px solid #e5eef7;
-      border-radius: 14px;
-      padding: 17px;
-    }
-
-    .label {
-      font-size: 12px;
-      color: #7890a0;
-      margin-bottom: 7px;
-      font-weight: 600;
-    }
-
-    .value {
-      font-size: 18px;
-      font-weight: 800;
-      color: #17324d;
-      word-break: break-word;
-    }
-
-    .section {
-      margin-top: 22px;
-    }
-
-    .section-title {
-      font-size: 19px;
-      font-weight: 800;
-      color: #17324d;
-      margin-bottom: 10px;
-    }
-
-    .status-box {
-      background: #f3f9fd;
-      border: 1px solid #e0edf5;
-      border-radius: 14px;
-      padding: 18px;
-    }
 
-    .status-main {
-      font-size: 18px;
-      font-weight: 800;
-    }
+<meta charset="UTF-8">
 
-    .status-sub {
-      margin-top: 8px;
-      font-size: 14px;
-      color: #667f91;
-    }
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-    .last-paid {
-      color: #16803c;
-    }
+<title>CHF Member Payment Details</title>
 
+<style>
 
-    /* =========================
-       NEXT PAYMENT DESIGN
-    ========================= */
+* {
+  box-sizing: border-box;
+}
 
-    .next-payment-card {
-      background: linear-gradient(
-        135deg,
-        #eef9ff,
-        #f4fffc
-      );
+body {
 
-      border: 1px solid #cfeaf5;
+  margin: 0;
 
-      border-radius: 18px;
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
 
-      padding: 24px 20px;
+  background:
+    linear-gradient(
+      135deg,
+      #eef7ff,
+      #f8fbff
+    );
 
-      text-align: center;
+  color: #17324d;
+}
 
-      box-shadow:
-        0 8px 25px
-        rgba(8, 123, 184, 0.08);
-    }
 
-    .next-payment-icon {
-      font-size: 30px;
-      margin-bottom: 8px;
-    }
+/* =========================
+   MAIN CONTAINER
+========================= */
 
-    .next-payment-label {
-      font-size: 13px;
-      color: #6d8494;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
+.container {
 
-    .next-payment-month {
-      font-size: 25px;
-      font-weight: 800;
-      color: #087bb8;
-      margin-bottom: 18px;
-    }
+  width: 100%;
 
-    .payment-notice {
-      border-top: 1px solid #dcecf3;
-      padding-top: 14px;
-      font-size: 13px;
-      line-height: 1.6;
-      color: #647d8d;
-    }
+  max-width: 850px;
 
-    .payment-notice strong {
-      color: #087bb8;
-    }
+  margin: 35px auto;
 
+  padding: 15px;
+}
 
-    /* =========================
-       DUE MONTHS
-    ========================= */
 
-    .due-box {
-      background: #fff8ef;
-      border: 1px solid #ffd9a8;
-      border-radius: 14px;
-      padding: 18px;
-    }
+/* =========================
+   MAIN CARD
+========================= */
 
-    .due-month {
-      display: inline-block;
+.card {
 
-      background: white;
+  background: white;
 
-      border: 1px solid #ffc778;
+  border-radius: 24px;
 
-      border-radius: 8px;
+  padding: 30px;
 
-      padding: 8px 12px;
+  box-shadow:
+    0 15px 45px
+    rgba(0, 60, 100, 0.12);
 
-      margin: 4px;
+  border:
+    1px solid #e5eef7;
+}
 
-      font-size: 14px;
 
-      font-weight: 600;
-    }
+/* =========================
+   HEADER
+========================= */
 
-    .no-due {
-      color: #16803c;
-      font-weight: 700;
-    }
+.top {
 
+  text-align: center;
 
-    /* =========================
-       TOTAL PAID
-    ========================= */
+  margin-bottom: 25px;
+}
 
-    .total-paid {
-      font-size: 27px;
-      font-weight: 800;
-      color: #087bb8;
-    }
 
+.logo {
 
-    /* =========================
-       PAYMENT TABLE
-    ========================= */
+  width: 90px;
 
-    .table-wrapper {
-      overflow-x: auto;
-      background: white;
-      border-radius: 12px;
-    }
+  height: 90px;
 
-    .payment-table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 600px;
-    }
+  border-radius: 50%;
 
-    .payment-table th,
-    .payment-table td {
-      padding: 12px 10px;
+  object-fit: cover;
 
-      border-bottom:
-        1px solid #e8eef2;
+  border:
+    2px solid #e5eef7;
 
-      text-align: left;
+  box-shadow:
+    0 8px 20px
+    rgba(11, 120, 181, 0.18);
 
-      font-size: 14px;
-    }
+  margin-bottom: 15px;
+}
 
-    .payment-table th {
-      background: #f3f8fb;
 
-      font-weight: 700;
+.title {
 
-      color: #315a73;
-    }
+  font-size: 27px;
 
+  font-weight: 800;
 
-    /* =========================
-       BACK BUTTON
-    ========================= */
+  color: #123b5d;
 
-    .back-btn {
-      width: 100%;
+  margin-bottom: 7px;
+}
 
-      margin-top: 25px;
 
-      padding: 14px;
+.subtitle {
 
-      border: none;
+  font-size: 14px;
 
-      border-radius: 12px;
+  color: #638096;
+}
 
-      background:
-        linear-gradient(
-          135deg,
-          #087bb8,
-          #13a49d
-        );
 
-      color: white;
+/* =========================
+   WORKING STATUS
+========================= */
 
-      font-size: 16px;
+.working-status {
 
-      font-weight: 700;
+  display: flex;
 
-      cursor: pointer;
-    }
+  justify-content: flex-end;
 
-    .back-btn:hover {
-      transform: translateY(-1px);
-    }
+  margin-bottom: 18px;
+}
 
 
-    /* =========================
-       LOADING
-    ========================= */
+.working-badge {
 
-    .loading {
-      text-align: center;
+  display: inline-flex;
 
-      padding: 50px 20px;
+  align-items: center;
 
-      font-size: 18px;
+  gap: 7px;
 
-      color: #638096;
-    }
+  background: #eaf9ef;
 
+  color: #16803c;
 
-    /* =========================
-       ERROR
-    ========================= */
+  border:
+    1px solid #b9e8c8;
 
-    .error {
-      text-align: center;
+  padding:
+    7px 14px;
 
-      padding: 40px 20px;
+  border-radius: 30px;
 
-      color: #c62828;
+  font-size: 13px;
 
-      font-weight: 700;
-    }
+  font-weight: 800;
 
+  letter-spacing: 0.5px;
+}
 
-    /* =========================
-       MOBILE
-    ========================= */
 
-    @media (max-width: 700px) {
+.working-dot {
 
-      .member-info {
-        grid-template-columns: 1fr;
-      }
+  width: 8px;
 
-      .card {
-        padding: 22px 18px;
-      }
+  height: 8px;
 
-      .title {
-        font-size: 23px;
-      }
+  background: #16803c;
 
-      .next-payment-month {
-        font-size: 22px;
-      }
+  border-radius: 50%;
+}
 
-    }
 
-  </style>
+/* =========================
+   MEMBER INFORMATION
+========================= */
+
+.member-info {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 15px;
+
+  margin-bottom: 25px;
+}
+
+
+.info-box {
+
+  background: #f8fbfd;
+
+  border:
+    1px solid #e5eef7;
+
+  border-radius: 14px;
+
+  padding: 17px;
+}
+
+
+.label {
+
+  font-size: 12px;
+
+  color: #7890a0;
+
+  margin-bottom: 7px;
+
+  font-weight: 600;
+}
+
+
+.value {
+
+  font-size: 18px;
+
+  font-weight: 800;
+
+  color: #17324d;
+
+  word-break: break-word;
+}
+
+
+/* =========================
+   SECTION
+========================= */
+
+.section {
+
+  margin-top: 22px;
+}
+
+
+.section-title {
+
+  font-size: 19px;
+
+  font-weight: 800;
+
+  color: #17324d;
+
+  margin-bottom: 10px;
+}
+
+
+.status-box {
+
+  background: #f3f9fd;
+
+  border:
+    1px solid #e0edf5;
+
+  border-radius: 14px;
+
+  padding: 18px;
+}
+
+
+.status-main {
+
+  font-size: 18px;
+
+  font-weight: 800;
+}
+
+
+.status-sub {
+
+  margin-top: 8px;
+
+  font-size: 14px;
+
+  color: #667f91;
+}
+
+
+.last-paid {
+
+  color: #16803c;
+}
+
+
+/* =========================
+   NEXT PAYMENT
+========================= */
+
+.next-payment-card {
+
+  background:
+    linear-gradient(
+      135deg,
+      #eef9ff,
+      #f4fffc
+    );
+
+  border:
+    1px solid #cfeaf5;
+
+  border-radius: 18px;
+
+  padding: 24px 20px;
+
+  text-align: center;
+
+  box-shadow:
+    0 8px 25px
+    rgba(8, 123, 184, 0.08);
+}
+
+
+.next-payment-icon {
+
+  font-size: 30px;
+
+  margin-bottom: 8px;
+}
+
+
+.next-payment-label {
+
+  font-size: 13px;
+
+  color: #6d8494;
+
+  font-weight: 600;
+
+  margin-bottom: 8px;
+}
+
+
+.next-payment-month {
+
+  font-size: 25px;
+
+  font-weight: 800;
+
+  color: #087bb8;
+
+  margin-bottom: 18px;
+}
+
+
+.payment-notice {
+
+  border-top:
+    1px solid #dcecf3;
+
+  padding-top: 14px;
+
+  font-size: 13px;
+
+  line-height: 1.6;
+
+  color: #647d8d;
+}
+
+
+.payment-notice strong {
+
+  color: #087bb8;
+}
+
+
+/* =========================
+   DUE MONTHS
+========================= */
+
+.due-box {
+
+  background: #fff8ef;
+
+  border:
+    1px solid #ffd9a8;
+
+  border-radius: 14px;
+
+  padding: 18px;
+}
+
+
+.due-month {
+
+  display: inline-block;
+
+  background: white;
+
+  border:
+    1px solid #ffc778;
+
+  border-radius: 8px;
+
+  padding: 8px 12px;
+
+  margin: 4px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+
+.no-due {
+
+  color: #16803c;
+
+  font-weight: 700;
+}
+
+
+/* =========================
+   TOTAL PAID
+========================= */
+
+.total-paid {
+
+  font-size: 27px;
+
+  font-weight: 800;
+
+  color: #087bb8;
+}
+
+
+/* =========================
+   PAYMENT TABLE
+========================= */
+
+.table-wrapper {
+
+  overflow-x: auto;
+
+  background: white;
+
+  border-radius: 12px;
+}
+
+
+.payment-table {
+
+  width: 100%;
+
+  border-collapse: collapse;
+
+  min-width: 600px;
+}
+
+
+.payment-table th,
+.payment-table td {
+
+  padding:
+    12px 10px;
+
+  border-bottom:
+    1px solid #e8eef2;
+
+  text-align: left;
+
+  font-size: 14px;
+}
+
+
+.payment-table th {
+
+  background: #f3f8fb;
+
+  font-weight: 700;
+
+  color: #315a73;
+}
+
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.back-btn {
+
+  width: 100%;
+
+  margin-top: 25px;
+
+  padding: 14px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #087bb8,
+      #13a49d
+    );
+
+  color: white;
+
+  font-size: 16px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+
+/* =========================
+   RESIGNED PAGE
+========================= */
+
+.resigned-page {
+
+  display: none;
+
+  text-align: center;
+
+  padding: 20px 10px 10px;
+}
+
+
+.resigned-icon {
+
+  width: 90px;
+
+  height: 90px;
+
+  margin:
+    0 auto 20px;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 42px;
+
+  background: #fff1f1;
+
+  border:
+    2px solid #ffd0d0;
+
+  color: #d32f2f;
+}
+
+
+.resigned-title {
+
+  font-size: 26px;
+
+  font-weight: 800;
+
+  color: #c62828;
+
+  margin-bottom: 22px;
+}
+
+
+.resigned-info {
+
+  background: #fafafa;
+
+  border:
+    1px solid #eeeeee;
+
+  border-radius: 16px;
+
+  padding: 20px;
+
+  max-width: 500px;
+
+  margin:
+    0 auto;
+}
+
+
+.resigned-row {
+
+  padding: 13px;
+
+  border-bottom:
+    1px solid #eeeeee;
+}
+
+
+.resigned-row:last-child {
+
+  border-bottom: none;
+}
+
+
+.resigned-label {
+
+  font-size: 12px;
+
+  color: #8a8a8a;
+
+  font-weight: 600;
+
+  margin-bottom: 5px;
+}
+
+
+.resigned-value {
+
+  font-size: 19px;
+
+  font-weight: 800;
+
+  color: #17324d;
+}
+
+
+.resigned-status {
+
+  display: inline-block;
+
+  margin-top: 8px;
+
+  padding:
+    8px 18px;
+
+  border-radius: 30px;
+
+  background: #fff0f0;
+
+  color: #c62828;
+
+  border:
+    1px solid #ffcaca;
+
+  font-size: 14px;
+
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+
+/* =========================
+   LOADING
+========================= */
+
+.loading {
+
+  text-align: center;
+
+  padding: 50px 20px;
+
+  font-size: 18px;
+
+  color: #638096;
+}
+
+
+/* =========================
+   ERROR
+========================= */
+
+.error {
+
+  text-align: center;
+
+  padding: 40px 20px;
+
+  color: #c62828;
+
+  font-weight: 700;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+  .member-info {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+  .card {
+
+    padding:
+      22px 18px;
+
+  }
+
+
+  .title {
+
+    font-size: 23px;
+
+  }
+
+
+  .next-payment-month {
+
+    font-size: 22px;
+
+  }
+
+
+  .working-status {
+
+    justify-content: center;
+
+  }
+
+}
+
+</style>
 
 </head>
 
 
 <body>
 
+
 <div class="container">
 
-  <div class="card">
 
+<div class="card">
 
-    <!-- LOADING -->
 
-    <div
-      id="loading"
-      class="loading"
-    >
+<!-- =========================
+     LOADING
+========================= -->
 
-      Loading member information...
+<div
+  id="loading"
+  class="loading"
+>
 
-    </div>
+Loading member information...
 
+</div>
 
-    <!-- MAIN CONTENT -->
 
-    <div
-      id="content"
-      style="display:none;"
-    >
 
+<!-- =========================
+     WORKING MEMBER PAGE
+========================= -->
 
-      <!-- HEADER -->
+<div
+  id="workingPage"
+  style="display:none;"
+>
 
-      <div class="top">
 
-        <img
-          class="logo"
-          src="https://raw.githubusercontent.com/chfofficialbd-chf/monthlypaidlist/main/Logo%20CHF.jpg"
-          alt="CHF Logo"
-        >
+<!-- HEADER -->
 
-        <div class="title">
+<div class="top">
 
-          CHF MEMBER PAYMENT DETAILS
+<img
+  class="logo"
+  src="https://raw.githubusercontent.com/chfofficialbd-chf/monthlypaidlist/main/Logo%20CHF.jpg"
+  alt="CHF Logo"
+>
 
-        </div>
 
-        <div class="subtitle">
+<div class="title">
 
-          Charity Hope Foundation (CHF)
+CHF MEMBER PAYMENT DETAILS
 
-        </div>
+</div>
 
-      </div>
 
+<div class="subtitle">
 
-      <!-- MEMBER INFORMATION -->
+Charity Hope Foundation (CHF)
 
-      <div class="member-info">
+</div>
 
+</div>
 
-        <div class="info-box">
 
-          <div class="label">
-            CHF ID
-          </div>
 
-          <div
-            class="value"
-            id="chfId"
-          >
-            -
-          </div>
+<!-- STATUS -->
 
-        </div>
+<div class="working-status">
 
+<div class="working-badge">
 
-        <div class="info-box">
+<span class="working-dot"></span>
 
-          <div class="label">
-            MEMBER NAME
-          </div>
+WORKING
 
-          <div
-            class="value"
-            id="memberName"
-          >
-            -
-          </div>
+</div>
 
-        </div>
+</div>
 
 
-        <div class="info-box">
 
-          <div class="label">
-            MEMBER DESIGNATION
-          </div>
+<!-- MEMBER INFO -->
 
-          <div
-            class="value"
-            id="designation"
-          >
-            -
-          </div>
+<div class="member-info">
 
-        </div>
 
+<div class="info-box">
 
-      </div>
+<div class="label">
 
+CHF ID
 
-      <!-- PAYMENT STATUS -->
+</div>
 
-      <div class="section">
+<div
+  class="value"
+  id="chfId"
+>
+-
+</div>
 
-        <div class="section-title">
+</div>
 
-          💳 Payment Status
 
-        </div>
 
-        <div class="status-box">
+<div class="info-box">
 
-          <div
-            class="status-main"
-            id="paymentStatus"
-          >
+<div class="label">
 
-            Checking...
+MEMBER NAME
 
-          </div>
+</div>
 
-          <div
-            class="status-sub"
-            id="statusText"
-          ></div>
+<div
+  class="value"
+  id="memberName"
+>
+-
+</div>
 
-        </div>
+</div>
 
-      </div>
 
 
-      <!-- LAST PAID -->
+<div class="info-box">
 
-      <div class="section">
+<div class="label">
 
-        <div class="section-title">
+MEMBER DESIGNATION
 
-          ✅ Last Paid
+</div>
 
-        </div>
+<div
+  class="value"
+  id="designation"
+>
+-
+</div>
 
-        <div class="status-box">
+</div>
 
-          <div
-            class="status-main last-paid"
-            id="lastPaid"
-          >
 
-            -
+</div>
 
-          </div>
 
-        </div>
 
-      </div>
+<!-- PAYMENT STATUS -->
 
+<div class="section">
 
-      <!-- NEXT PAYMENT MONTH -->
 
-      <div class="section">
+<div class="section-title">
 
-        <div class="section-title">
+💳 Payment Status
 
-          📅 Next Payment Month
+</div>
 
-        </div>
 
+<div class="status-box">
 
-        <div class="next-payment-card">
 
+<div
+  class="status-main"
+  id="paymentStatus"
+>
 
-          <div class="next-payment-icon">
+Checking...
 
-            📅
+</div>
 
-          </div>
 
+<div
+  class="status-sub"
+  id="statusText"
+></div>
 
-          <div class="next-payment-label">
 
-            Your Next Payment Month
+</div>
 
-          </div>
+</div>
 
 
-          <div
-            class="next-payment-month"
-            id="nextPayment"
-          >
 
-            -
+<!-- LAST PAID -->
 
-          </div>
+<div class="section">
 
 
-          <div class="payment-notice">
+<div class="section-title">
 
-            If you find any incorrect or missing
-            payment information, please contact the
-            <strong>Accounts Section</strong>.
+✅ Last Paid
 
-          </div>
+</div>
 
 
-        </div>
+<div class="status-box">
 
-      </div>
 
+<div
+  class="status-main last-paid"
+  id="lastPaid"
+>
 
-      <!-- TOTAL PAID -->
+-
 
-      <div class="section">
+</div>
 
-        <div class="section-title">
 
-          💰 Total Paid
+</div>
 
-        </div>
+</div>
 
 
-        <div class="status-box">
 
-          <div class="total-paid">
+<!-- NEXT PAYMENT -->
 
-            ৳
-            <span id="totalPaid">
-              0
-            </span>
+<div class="section">
 
-          </div>
 
-        </div>
+<div class="section-title">
 
-      </div>
+📅 Next Payment Month
 
+</div>
 
-      <!-- PAYMENT HISTORY -->
 
-      <div class="section">
+<div class="next-payment-card">
 
-        <div class="section-title">
 
-          📋 Payment History
+<div class="next-payment-icon">
 
-        </div>
+📅
 
+</div>
 
-        <div class="status-box">
 
-          <div class="table-wrapper">
+<div class="next-payment-label">
 
+Your Next Payment Month
 
-            <table
-              class="payment-table"
-            >
+</div>
 
 
-              <thead>
+<div
+  class="next-payment-month"
+  id="nextPayment"
+>
 
-                <tr>
+-
 
-                  <th>
-                    Month
-                  </th>
+</div>
 
-                  <th>
-                    Payment Date
-                  </th>
 
-                  <th>
-                    Method
-                  </th>
+<div class="payment-notice">
 
-                  <th>
-                    Receiver
-                  </th>
+If you find any incorrect or missing payment
+information, please contact the
+<strong>Accounts Section</strong>.
 
-                  <th>
-                    Amount
-                  </th>
+</div>
 
-                </tr>
 
-              </thead>
+</div>
 
+</div>
 
-              <tbody
-                id="paymentHistory"
-              ></tbody>
 
 
-            </table>
+<!-- TOTAL PAID -->
 
-          </div>
+<div class="section">
 
-        </div>
 
-      </div>
+<div class="section-title">
 
+💰 Total Paid
 
-      <!-- DUE MONTHS -->
+</div>
 
-      <div class="section">
 
-        <div class="section-title">
+<div class="status-box">
 
-          ⚠️ Due / Unpaid Months
 
-        </div>
+<div class="total-paid">
 
+৳
+<span id="totalPaid">
+0
+</span>
 
-        <div
-          class="due-box"
-          id="dueMonths"
-        >
+</div>
 
-          Checking...
 
-        </div>
+</div>
 
-      </div>
+</div>
 
 
-      <!-- BACK BUTTON -->
 
-      <button
-        class="back-btn"
-        onclick="goBack()"
-      >
+<!-- PAYMENT HISTORY -->
 
-        ← BACK
+<div class="section">
 
-      </button>
 
+<div class="section-title">
 
-    </div>
+📋 Payment History
 
+</div>
 
-    <!-- ERROR -->
 
-    <div
-      id="error"
-      class="error"
-      style="display:none;"
-    ></div>
+<div class="status-box">
 
 
-  </div>
+<div class="table-wrapper">
+
+
+<table class="payment-table">
+
+
+<thead>
+
+<tr>
+
+<th>
+Month
+</th>
+
+<th>
+Payment Date
+</th>
+
+<th>
+Method
+</th>
+
+<th>
+Receiver
+</th>
+
+<th>
+Amount
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody
+  id="paymentHistory"
+></tbody>
+
+
+</table>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- DUE -->
+
+<div class="section">
+
+
+<div class="section-title">
+
+⚠️ Due / Unpaid Months
+
+</div>
+
+
+<div
+  class="due-box"
+  id="dueMonths"
+>
+
+Checking...
+
+</div>
+
+
+</div>
+
+
+
+<!-- BACK -->
+
+<button
+  class="back-btn"
+  onclick="goBack()"
+>
+
+← BACK
+
+</button>
+
+
+</div>
+
+
+
+<!-- =========================
+     RESIGNED PAGE
+========================= -->
+
+<div
+  id="resignedPage"
+  class="resigned-page"
+>
+
+
+<div class="top">
+
+
+<img
+  class="logo"
+  src="https://raw.githubusercontent.com/chfofficialbd-chf/monthlypaidlist/main/Logo%20CHF.jpg"
+  alt="CHF Logo"
+>
+
+
+<div class="title">
+
+CHF MEMBER STATUS
+
+</div>
+
+
+<div class="subtitle">
+
+Charity Hope Foundation (CHF)
+
+</div>
+
+
+</div>
+
+
+
+<div class="resigned-icon">
+
+✕
+
+</div>
+
+
+
+<div class="resigned-title">
+
+MEMBER RESIGNED
+
+</div>
+
+
+
+<div class="resigned-info">
+
+
+<div class="resigned-row">
+
+
+<div class="resigned-label">
+
+MEMBER NAME
+
+</div>
+
+
+<div
+  class="resigned-value"
+  id="resignedName"
+>
+-
+</div>
+
+
+</div>
+
+
+
+<div class="resigned-row">
+
+
+<div class="resigned-label">
+
+CHF ID
+
+</div>
+
+
+<div
+  class="resigned-value"
+  id="resignedId"
+>
+-
+</div>
+
+
+</div>
+
+
+
+<div class="resigned-row">
+
+
+<div class="resigned-label">
+
+MEMBER STATUS
+
+</div>
+
+
+<div>
+
+<span class="resigned-status">
+
+RESIGNED
+
+</span>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<button
+  class="back-btn"
+  onclick="goBack()"
+>
+
+← BACK
+
+</button>
+
+
+</div>
+
+
+
+<!-- ERROR -->
+
+<div
+  id="error"
+  class="error"
+  style="display:none;"
+></div>
+
+
+</div>
 
 </div>
 
@@ -737,113 +1313,189 @@ const REPORT_YEAR = 2026;
 
 
 /* =========================
-   MONTH NAME
+   CHECK MEMBER STATUS
 ========================= */
 
-function monthName(date) {
+function isResignedStatus(value) {
 
-  return date.toLocaleDateString(
-    "en-US",
-    {
-      month: "long",
-      year: "numeric"
-    }
-  );
+
+if (!value) {
+
+return false;
+
+}
+
+
+const status =
+value
+.toString()
+.trim()
+.toLowerCase();
+
+
+/*
+   Resign status values
+*/
+
+const resignedWords = [
+
+"resign",
+"resigned",
+"reign",
+"reigned",
+"retired",
+"retire",
+"left",
+"leave",
+"inactive"
+
+];
+
+
+return resignedWords.some(
+function(word) {
+
+return status === word;
+
+}
+);
+
 
 }
 
 
 /* =========================
-   GET MONTH KEY
+   MONTH NAME
+========================= */
+
+function monthName(date) {
+
+
+return date.toLocaleDateString(
+
+"en-US",
+
+{
+
+month: "long",
+
+year: "numeric"
+
+}
+
+);
+
+
+}
+
+
+/* =========================
+   MONTH KEY
 ========================= */
 
 function getMonthKey(value) {
 
-  if (!value) return null;
+
+if (!value) {
+
+return null;
+
+}
 
 
-  const text =
-    value.toString().trim();
+const text =
+value.toString().trim();
 
 
-  const date =
-    new Date(text);
+const date =
+new Date(text);
 
 
-  if (!isNaN(date.getTime())) {
-
-    const year =
-      date.getFullYear();
+if (!isNaN(date.getTime())) {
 
 
-    const month =
-      date.getMonth() + 1;
+const year =
+date.getFullYear();
 
 
-    return (
-      year +
-      "-" +
-      String(month).padStart(2, "0")
-    );
-
-  }
+const month =
+date.getMonth() + 1;
 
 
-  const match =
-    text.match(
-      /^([A-Za-z]{3})-(\d{2})$/
-    );
+return (
+
+year +
+"-" +
+String(month).padStart(
+2,
+"0"
+)
+
+);
+
+}
 
 
-  if (match) {
+const match =
+text.match(
+/^([A-Za-z]{3})-(\d{2})$/
+);
 
 
-    const months = {
-
-      Jan: 0,
-      Feb: 1,
-      Mar: 2,
-      Apr: 3,
-      May: 4,
-      Jun: 5,
-      Jul: 6,
-      Aug: 7,
-      Sep: 8,
-      Oct: 9,
-      Nov: 10,
-      Dec: 11
-
-    };
+if (match) {
 
 
-    const month =
-      months[match[1]];
+const months = {
+
+Jan: 0,
+Feb: 1,
+Mar: 2,
+Apr: 3,
+May: 4,
+Jun: 5,
+Jul: 6,
+Aug: 7,
+Sep: 8,
+Oct: 9,
+Nov: 10,
+Dec: 11
+
+};
 
 
-    if (month !== undefined) {
+const month =
+months[match[1]];
 
 
-      const year =
-        2000 +
-        Number(match[2]);
+if (
+month !== undefined
+) {
 
 
-      return (
-
-        year +
-        "-" +
-        String(
-          month + 1
-        ).padStart(2, "0")
-
-      );
-
-    }
-
-  }
+const year =
+2000 +
+Number(match[2]);
 
 
-  return null;
+return (
+
+year +
+"-" +
+String(
+month + 1
+).padStart(
+2,
+"0"
+)
+
+);
+
+}
+
+}
+
+
+return null;
 
 }
 
@@ -854,27 +1506,28 @@ function getMonthKey(value) {
 
 function keyToMonth(key) {
 
-  const parts =
-    key.split("-");
+
+const parts =
+key.split("-");
 
 
-  const year =
-    Number(parts[0]);
+const year =
+Number(parts[0]);
 
 
-  const month =
-    Number(parts[1]) - 1;
+const month =
+Number(parts[1]) - 1;
 
 
-  const date =
-    new Date(
-      year,
-      month,
-      1
-    );
+const date =
+new Date(
+year,
+month,
+1
+);
 
 
-  return monthName(date);
+return monthName(date);
 
 }
 
@@ -885,339 +1538,335 @@ function keyToMonth(key) {
 
 function formatDate(value) {
 
-  if (!value) return "-";
+
+if (!value) {
+
+return "-";
+
+}
 
 
-  const date =
-    new Date(value);
+const date =
+new Date(value);
 
 
-  if (isNaN(date.getTime())) {
+if (
+isNaN(date.getTime())
+) {
 
-    return value;
+return value;
 
-  }
+}
 
 
-  return date.toLocaleDateString(
-    "en-GB",
-    {
-      day: "2-digit",
-      month: "short",
-      year: "numeric"
-    }
-  );
+return date.toLocaleDateString(
+
+"en-GB",
+
+{
+
+day: "2-digit",
+
+month: "short",
+
+year: "numeric"
+
+}
+
+);
 
 }
 
 
 /* =========================
-   CALCULATE 2026 DUE
+   CALCULATE DUE MONTHS
+   ONLY 2026
 ========================= */
 
 function calculateDueMonths(
-  payments
+payments
 ) {
 
 
-  const today =
-    new Date();
+const today =
+new Date();
 
 
-  const currentYear =
-    today.getFullYear();
+const currentYear =
+today.getFullYear();
 
 
-  const currentMonth =
-    today.getMonth();
+const currentMonth =
+today.getMonth();
 
 
-  /*
-     START FROM
-     JANUARY 2026
-  */
-
-  const startDate =
-    new Date(
-      REPORT_YEAR,
-      0,
-      1
-    );
+const startDate =
+new Date(
+REPORT_YEAR,
+0,
+1
+);
 
 
-  /*
-     ONLY MONTHS BEFORE
-     CURRENT RUNNING MONTH
-  */
-
-  let endDate;
+let endDate;
 
 
-  if (
-    currentYear === REPORT_YEAR
-  ) {
-
-    endDate =
-      new Date(
-        REPORT_YEAR,
-        currentMonth,
-        1
-      );
-
-  }
-
-  else if (
-    currentYear > REPORT_YEAR
-  ) {
-
-    endDate =
-      new Date(
-        REPORT_YEAR,
-        12,
-        1
-      );
-
-  }
-
-  else {
-
-    endDate =
-      new Date(
-        REPORT_YEAR,
-        0,
-        1
-      );
-
-  }
+if (
+currentYear === REPORT_YEAR
+) {
 
 
-  /*
-     PAID MONTHS
-  */
-
-  const paidMonths =
-    new Set();
-
-
-  payments.forEach(
-    function(payment) {
+endDate =
+new Date(
+REPORT_YEAR,
+currentMonth,
+1
+);
 
 
-      const key =
-        getMonthKey(
-          payment.month
-        );
+}
+
+else if (
+currentYear > REPORT_YEAR
+) {
 
 
-      if (!key) return;
+endDate =
+new Date(
+REPORT_YEAR,
+12,
+1
+);
 
 
-      const year =
-        Number(
-          key.split("-")[0]
-        );
+}
+
+else {
 
 
-      if (
-        year === REPORT_YEAR
-      ) {
+endDate =
+new Date(
+REPORT_YEAR,
+0,
+1
+);
 
-        paidMonths.add(key);
-
-      }
-
-    }
-  );
+}
 
 
-  /*
-     FIND UNPAID
-  */
-
-  const dueMonths = [];
+const paidMonths =
+new Set();
 
 
-  let checkDate =
-    new Date(
-      startDate
-    );
+payments.forEach(
+function(payment) {
 
 
-  while (
-    checkDate < endDate
-  ) {
+const key =
+getMonthKey(
+payment.month
+);
 
 
-    const key =
+if (!key) {
 
-      REPORT_YEAR +
-      "-" +
-      String(
-        checkDate.getMonth() + 1
-      ).padStart(2, "0");
+return;
+
+}
 
 
-    if (
-      !paidMonths.has(key)
-    ) {
+const year =
+Number(
+key.split("-")[0]
+);
 
 
-      dueMonths.push({
+if (
+year === REPORT_YEAR
+) {
 
-        key: key,
+paidMonths.add(key);
 
-        name:
-          monthName(
-            checkDate
-          )
+}
 
-      });
-
-    }
+});
 
 
-    checkDate.setMonth(
-      checkDate.getMonth() + 1
-    );
-
-  }
+const dueMonths = [];
 
 
-  return dueMonths;
+let checkDate =
+new Date(startDate);
+
+
+while (
+checkDate < endDate
+) {
+
+
+const key =
+
+REPORT_YEAR +
+"-" +
+String(
+checkDate.getMonth() + 1
+).padStart(
+2,
+"0"
+);
+
+
+if (
+!paidMonths.has(key)
+) {
+
+
+dueMonths.push({
+
+key: key,
+
+name:
+monthName(
+checkDate
+)
+
+});
+
+}
+
+
+checkDate.setMonth(
+checkDate.getMonth() + 1
+);
+
+}
+
+
+return dueMonths;
 
 }
 
 
 /* =========================
-   LAST PAID — 2026
+   LAST PAID
+   ONLY 2026
 ========================= */
 
 function getLastPaidMonth(
-  payments
+payments
 ) {
 
 
-  if (
-    !payments ||
-    payments.length === 0
-  ) {
+if (
+!payments ||
+payments.length === 0
+) {
 
-    return null;
+return null;
 
-  }
-
-
-  let latestKey =
-    null;
+}
 
 
-  payments.forEach(
-    function(payment) {
+let latestKey =
+null;
 
 
-      const key =
-        getMonthKey(
-          payment.month
-        );
+payments.forEach(
+function(payment) {
 
 
-      if (!key) return;
+const key =
+getMonthKey(
+payment.month
+);
 
 
-      const year =
-        Number(
-          key.split("-")[0]
-        );
+if (!key) {
+
+return;
+
+}
 
 
-      /*
-         ONLY 2026
-      */
-
-      if (
-        year !== REPORT_YEAR
-      ) {
-
-        return;
-
-      }
+const year =
+Number(
+key.split("-")[0]
+);
 
 
-      if (
-        !latestKey ||
-        key > latestKey
-      ) {
+if (
+year !== REPORT_YEAR
+) {
 
-        latestKey =
-          key;
+return;
 
-      }
-
-    }
-  );
+}
 
 
-  return latestKey;
+if (
+!latestKey ||
+key > latestKey
+) {
+
+latestKey = key;
+
+}
+
+});
+
+
+return latestKey;
 
 }
 
 
 /* =========================
-   NEXT PAYMENT MONTH
+   NEXT PAYMENT
 ========================= */
 
 function getNextPaymentMonth(
-  lastPaidKey
+lastPaidKey
 ) {
 
 
-  let date;
+let date;
 
 
-  if (lastPaidKey) {
+if (lastPaidKey) {
 
 
-    const parts =
-      lastPaidKey.split("-");
+const parts =
+lastPaidKey.split("-");
 
 
-    /*
-       Example:
+date =
+new Date(
 
-       Last paid:
-       September 2026
+Number(parts[0]),
 
-       Next:
-       October 2026
-    */
+Number(parts[1]),
 
-    date =
-      new Date(
-        Number(parts[0]),
-        Number(parts[1]),
-        1
-      );
+1
+
+);
 
 
-  } else {
+}
+
+else {
 
 
-    /*
-       No payment yet
-       → January 2026
-    */
+date =
+new Date(
+REPORT_YEAR,
+0,
+1
+);
 
-    date =
-      new Date(
-        REPORT_YEAR,
-        0,
-        1
-      );
-
-  }
+}
 
 
-  return monthName(date);
+return monthName(date);
 
 }
 
@@ -1227,34 +1876,40 @@ function getNextPaymentMonth(
 ========================= */
 
 function showError(
-  message
+message
 ) {
 
 
-  document.getElementById(
-    "loading"
-  ).style.display =
-    "none";
+document.getElementById(
+"loading"
+).style.display =
+"none";
 
 
-  document.getElementById(
-    "content"
-  ).style.display =
-    "none";
+document.getElementById(
+"workingPage"
+).style.display =
+"none";
 
 
-  const error =
-    document.getElementById(
-      "error"
-    );
+document.getElementById(
+"resignedPage"
+).style.display =
+"none";
 
 
-  error.style.display =
-    "block";
+const error =
+document.getElementById(
+"error"
+);
 
 
-  error.innerText =
-    message;
+error.style.display =
+"block";
+
+
+error.innerText =
+message;
 
 }
 
@@ -1266,466 +1921,533 @@ function showError(
 async function loadMember() {
 
 
-  const params =
-    new URLSearchParams(
-      window.location.search
-    );
+const params =
+new URLSearchParams(
+window.location.search
+);
 
 
-  const chfId =
-    params.get("id");
+const chfId =
+params.get("id");
 
 
-  if (!chfId) {
+if (!chfId) {
 
 
-    showError(
-      "CHF ID not provided."
-    );
+showError(
+"CHF ID not provided."
+);
 
 
-    return;
+return;
 
-  }
+}
 
 
-  try {
+try {
 
 
-    const response =
-      await fetch(
+const response =
+await fetch(
 
-        API_URL +
-        "?id=" +
-        encodeURIComponent(
-          chfId
-        )
+API_URL +
+"?id=" +
+encodeURIComponent(
+chfId
+)
 
-      );
+);
 
 
-    const data =
-      await response.json();
+const data =
+await response.json();
 
 
-    if (!data.success) {
+if (!data.success) {
 
 
-      showError(
+showError(
 
-        data.message ||
-        "Member information not found."
+data.message ||
+"Member information not found."
 
-      );
+);
 
 
-      return;
+return;
 
-    }
+}
 
 
-    /* =========================
-       MEMBER INFO
-    ========================= */
+/* =========================
+   MEMBER STATUS
+========================= */
 
 
-    document.getElementById(
-      "chfId"
-    ).innerText =
-      data.member.chfId ||
-      "-";
+const member =
+data.member;
 
 
-    document.getElementById(
-      "memberName"
-    ).innerText =
-      data.member.name ||
-      "-";
+/*
+   K column =
+   Working/Reign List
 
+   Primary status check
+*/
 
-    document.getElementById(
-      "designation"
-    ).innerText =
-      data.member.designation ||
-      "-";
+const memberStatus =
+member.workingStatus;
 
 
-    /* =========================
-       ALL PAYMENTS
-    ========================= */
+/* =========================
+   RESIGNED MEMBER
+========================= */
 
+if (
+isResignedStatus(
+memberStatus
+)
+) {
 
-    const allPayments =
-      data.payments || [];
 
+/*
+   ONLY SHOW:
 
-    /* =========================
-       ONLY 2026 PAYMENTS
-    ========================= */
+   Name
+   CHF ID
+   RESIGNED
+*/
 
 
-    const payments2026 =
-      allPayments.filter(
-        function(payment) {
+document.getElementById(
+"resignedName"
+).innerText =
+member.name || "-";
 
 
-          const key =
-            getMonthKey(
-              payment.month
-            );
+document.getElementById(
+"resignedId"
+).innerText =
+member.chfId || "-";
 
 
-          if (!key) {
+document.getElementById(
+"loading"
+).style.display =
+"none";
 
-            return false;
 
-          }
+document.getElementById(
+"workingPage"
+).style.display =
+"none";
 
 
-          const year =
-            Number(
-              key.split("-")[0]
-            );
+document.getElementById(
+"resignedPage"
+).style.display =
+"block";
 
 
-          return (
-            year === REPORT_YEAR
-          );
+return;
 
-        }
-      );
+}
 
 
-    /* =========================
-       TOTAL PAID — 2026
-    ========================= */
+/* =========================
+   WORKING MEMBER
+========================= */
 
 
-    let totalPaid =
-      0;
+document.getElementById(
+"chfId"
+).innerText =
+member.chfId || "-";
 
 
-    payments2026.forEach(
-      function(payment) {
+document.getElementById(
+"memberName"
+).innerText =
+member.name || "-";
 
 
-        totalPaid +=
-          Number(
-            payment.amount
-          ) || 0;
+document.getElementById(
+"designation"
+).innerText =
+member.designation || "-";
 
 
-      }
-    );
+/* =========================
+   ALL PAYMENTS
+========================= */
 
+const allPayments =
+data.payments || [];
 
-    document.getElementById(
-      "totalPaid"
-    ).innerText =
-      totalPaid.toLocaleString();
 
+/* =========================
+   ONLY 2026 PAYMENTS
+========================= */
 
-    /* =========================
-       PAYMENT STATUS
-    ========================= */
+const payments2026 =
+allPayments.filter(
+function(payment) {
 
 
-    if (
-      payments2026.length > 0
-    ) {
+const key =
+getMonthKey(
+payment.month
+);
 
 
-      document.getElementById(
-        "paymentStatus"
-      ).innerText =
-        "2026 Payment Record Found";
+if (!key) {
 
+return false;
 
-    } else {
+}
 
 
-      document.getElementById(
-        "paymentStatus"
-      ).innerText =
-        "No 2026 Payment Record";
+const year =
+Number(
+key.split("-")[0]
+);
 
-    }
 
+return (
+year === REPORT_YEAR
+);
 
-    /* =========================
-       LAST PAID
-    ========================= */
+}
+);
 
 
-    const lastPaidKey =
-      getLastPaidMonth(
-        payments2026
-      );
+/* =========================
+   TOTAL PAID
+========================= */
 
+let totalPaid =
+0;
 
-    if (lastPaidKey) {
 
+payments2026.forEach(
+function(payment) {
 
-      document.getElementById(
-        "lastPaid"
-      ).innerText =
-        keyToMonth(
-          lastPaidKey
-        );
 
+totalPaid +=
+Number(
+payment.amount
+) || 0;
 
-    } else {
+}
+);
 
 
-      document.getElementById(
-        "lastPaid"
-      ).innerText =
-        "No 2026 payment yet";
+document.getElementById(
+"totalPaid"
+).innerText =
+totalPaid.toLocaleString();
 
-    }
 
+/* =========================
+   PAYMENT STATUS
+========================= */
 
-    /* =========================
-       NEXT PAYMENT
-    ========================= */
+if (
+payments2026.length > 0
+) {
 
 
-    const nextPayment =
-      getNextPaymentMonth(
-        lastPaidKey
-      );
+document.getElementById(
+"paymentStatus"
+).innerText =
+"2026 Payment Record Found";
 
 
-    document.getElementById(
-      "nextPayment"
-    ).innerText =
-      nextPayment;
+}
 
+else {
 
-    /* =========================
-       PAYMENT HISTORY
-    ========================= */
 
+document.getElementById(
+"paymentStatus"
+).innerText =
+"No 2026 Payment Record";
 
-    const history =
-      document.getElementById(
-        "paymentHistory"
-      );
+}
 
 
-    history.innerHTML =
-      "";
+/* =========================
+   LAST PAID
+========================= */
 
+const lastPaidKey =
+getLastPaidMonth(
+payments2026
+);
 
-    if (
-      payments2026.length > 0
-    ) {
 
+if (lastPaidKey) {
 
-      payments2026.forEach(
-        function(payment) {
 
+document.getElementById(
+"lastPaid"
+).innerText =
+keyToMonth(
+lastPaidKey
+);
 
-          const row =
-            document.createElement(
-              "tr"
-            );
 
+}
 
-          row.innerHTML = `
+else {
 
-            <td>
-              ${payment.month || "-"}
-            </td>
 
-            <td>
-              ${formatDate(
-                payment.paymentDate
-              )}
-            </td>
+document.getElementById(
+"lastPaid"
+).innerText =
+"No 2026 payment yet";
 
-            <td>
-              ${payment.paymentMethod || "-"}
-            </td>
+}
 
-            <td>
-              ${payment.receiver || "-"}
-            </td>
 
-            <td>
-              ৳ ${Number(
-                payment.amount || 0
-              ).toLocaleString()}
-            </td>
+/* =========================
+   NEXT PAYMENT
+========================= */
 
-          `;
+const nextPayment =
+getNextPaymentMonth(
+lastPaidKey
+);
 
 
-          history.appendChild(
-            row
-          );
+document.getElementById(
+"nextPayment"
+).innerText =
+nextPayment;
 
-        }
-      );
 
+/* =========================
+   PAYMENT HISTORY
+========================= */
 
-    } else {
+const history =
+document.getElementById(
+"paymentHistory"
+);
 
 
-      history.innerHTML = `
+history.innerHTML =
+"";
 
-        <tr>
 
-          <td
-            colspan="5"
-            style="text-align:center;"
-          >
+if (
+payments2026.length > 0
+) {
 
-            No 2026 payment history found
 
-          </td>
+payments2026.forEach(
+function(payment) {
 
-        </tr>
 
-      `;
+const row =
+document.createElement(
+"tr"
+);
 
-    }
 
+row.innerHTML = `
 
-    /* =========================
-       DUE MONTHS
-    ========================= */
+<td>
+${payment.month || "-"}
+</td>
 
+<td>
+${formatDate(
+payment.paymentDate
+)}
+</td>
 
-    const dueMonths =
-      calculateDueMonths(
-        payments2026
-      );
+<td>
+${payment.paymentMethod || "-"}
+</td>
 
+<td>
+${payment.receiver || "-"}
+</td>
 
-    const dueBox =
-      document.getElementById(
-        "dueMonths"
-      );
+<td>
+৳ ${Number(
+payment.amount || 0
+).toLocaleString()}
+</td>
 
+`;
 
-    dueBox.innerHTML =
-      "";
 
+history.appendChild(
+row
+);
 
-    if (
-      dueMonths.length === 0
-    ) {
 
+});
 
-      dueBox.innerHTML = `
+}
 
-        <div class="no-due">
 
-          ✓ No unpaid previous months in 2026
+else {
 
-        </div>
 
-      `;
+history.innerHTML = `
 
+<tr>
 
-    } else {
+<td
+colspan="5"
+style="text-align:center;"
+>
 
+No 2026 payment history found
 
-      dueMonths.forEach(
-        function(month) {
+</td>
 
+</tr>
 
-          const span =
-            document.createElement(
-              "span"
-            );
+`;
 
+}
 
-          span.className =
-            "due-month";
 
+/* =========================
+   DUE MONTHS
+========================= */
 
-          span.innerText =
-            month.name;
+const dueMonths =
+calculateDueMonths(
+payments2026
+);
 
 
-          dueBox.appendChild(
-            span
-          );
+const dueBox =
+document.getElementById(
+"dueMonths"
+);
 
 
-        }
-      );
+dueBox.innerHTML =
+"";
 
-    }
 
+if (
+dueMonths.length === 0
+) {
 
-    /* =========================
-       STATUS TEXT
-    ========================= */
 
+dueBox.innerHTML = `
 
-    if (
-      dueMonths.length > 0
-    ) {
+<div class="no-due">
 
+✓ No unpaid previous months in 2026
 
-      document.getElementById(
-        "statusText"
-      ).innerText =
+</div>
 
-        dueMonths.length +
-        " previous month(s) unpaid in 2026.";
+`;
 
 
-    } else {
+}
 
+else {
 
-      document.getElementById(
-        "statusText"
-      ).innerText =
 
-        "All previous months in 2026 are paid.";
+dueMonths.forEach(
+function(month) {
 
-    }
 
+const span =
+document.createElement(
+"span"
+);
 
-    /* =========================
-       SHOW PAGE
-    ========================= */
 
+span.className =
+"due-month";
 
-    document.getElementById(
-      "loading"
-    ).style.display =
-      "none";
 
+span.innerText =
+month.name;
 
-    document.getElementById(
-      "content"
-    ).style.display =
-      "block";
 
+dueBox.appendChild(
+span
+);
 
-  }
 
+});
 
-  catch (error) {
+}
 
 
-    console.error(
-      error
-    );
+/* =========================
+   STATUS TEXT
+========================= */
 
+if (
+dueMonths.length > 0
+) {
 
-    showError(
 
-      "Unable to connect to payment system. Please try again."
+document.getElementById(
+"statusText"
+).innerText =
 
-    );
+dueMonths.length +
+" previous month(s) unpaid in 2026.";
 
-  }
+
+}
+
+else {
+
+
+document.getElementById(
+"statusText"
+).innerText =
+
+"All previous months in 2026 are paid.";
+
+}
+
+
+/* =========================
+   SHOW WORKING PAGE
+========================= */
+
+document.getElementById(
+"loading"
+).style.display =
+"none";
+
+
+document.getElementById(
+"workingPage"
+).style.display =
+"block";
+
+
+}
+
+catch (error) {
+
+
+console.error(error);
+
+
+showError(
+
+"Unable to connect to payment system. Please try again."
+
+);
+
+}
 
 }
 
@@ -1736,8 +2458,9 @@ async function loadMember() {
 
 function goBack() {
 
-  window.location.href =
-    "index.html";
+
+window.location.href =
+"index.html";
 
 }
 
@@ -1752,4 +2475,6 @@ loadMember();
 </script>
 
 </body>
+
 </html>
+```
