@@ -394,7 +394,7 @@
 
   <script>
 
-    async function checkPayment() {
+    function checkPayment() {
 
       const input =
         document.getElementById("chfId");
@@ -432,105 +432,21 @@
       }
 
 
-      // API URL
+      // Button loading state
 
-      const apiUrl =
-        "https://script.google.com/macros/s/AKfycbwxXusjp382Z9aeuPxuIpLJYGx8FJd0qH_C6eBcdGuGoEa41ISnle1Ucp1SE-voIw3ruA/exec?id="
-        + encodeURIComponent(chfId);
+      button.disabled = true;
 
-
-      try {
-
-        // Button loading state
-
-        button.disabled = true;
-
-        button.innerText = "CHECKING...";
+      button.innerText = "OPENING...";
 
 
-        // Call API
+      /*
+        Open the member details page
+        with the entered CHF ID.
+      */
 
-        const response =
-          await fetch(apiUrl);
-
-
-        const data =
-          await response.json();
-
-
-        // API error
-
-        if (!data.success) {
-
-          alert(
-            "CHF ID: " + chfId +
-            "\n\n" +
-            data.message
-          );
-
-          return;
-        }
-
-
-        // Payment information
-
-        let message =
-          "CHF ID: " + data.chfId +
-          "\n" +
-          "Name: " + data.memberName +
-          "\n" +
-          "Total Payments: " + data.totalPayments;
-
-
-        // Show payment records
-
-        if (
-          data.payments &&
-          data.payments.length > 0
-        ) {
-
-          message += "\n\nPayment History:\n";
-
-          data.payments.forEach(
-            function(payment, index) {
-
-              message +=
-                "\n" +
-                (index + 1) +
-                ". " +
-                payment.month +
-                " - ৳" +
-                payment.amount +
-                " - " +
-                payment.paymentMethod;
-
-            }
-          );
-
-        }
-
-
-        alert(message);
-
-
-      } catch (error) {
-
-        console.error(error);
-
-        alert(
-          "Unable to connect to payment system.\n\nPlease try again later."
-        );
-
-
-      } finally {
-
-        // Restore button
-
-        button.disabled = false;
-
-        button.innerText = "CHECK PAYMENT";
-
-      }
+      window.location.href =
+        "details.html?id=" +
+        encodeURIComponent(chfId);
 
     }
 
