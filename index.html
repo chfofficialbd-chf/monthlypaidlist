@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,100 +9,187 @@
 
 <style>
 
-/* =========================
-   BASIC
-========================= */
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-  font-family: "Segoe UI", Arial, sans-serif;
-  min-height: 100vh;
-  background: #f5f8fc;
-  color: #142b3f;
-  overflow-x: hidden;
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f4f8fb;
+    color:#17324d;
 }
 
-/* =========================
-   BACKGROUND
-========================= */
+/* HEADER */
 
-.page {
-  min-height: 100vh;
-  position: relative;
-  overflow: hidden;
+.header{
+    height:78px;
+    background:#ffffff;
+    border-bottom:1px solid #e7eef3;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 7%;
+
+    position:relative;
+    z-index:10;
 }
 
-.bg-circle {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(2px);
-  pointer-events: none;
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
-.circle-one {
-  width: 420px;
-  height: 420px;
-  background: rgba(23, 162, 184, 0.10);
-  top: -180px;
-  left: -120px;
+.logo{
+    width:48px;
+    height:48px;
+
+    border-radius:14px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:white;
+    font-size:15px;
+    font-weight:bold;
+
+    background:linear-gradient(
+        135deg,
+        #087ea4,
+        #20b79d
+    );
+
+    box-shadow:0 8px 20px
+        rgba(8,126,164,.18);
 }
 
-.circle-two {
-  width: 360px;
-  height: 360px;
-  background: rgba(35, 102, 190, 0.09);
-  right: -120px;
-  bottom: -100px;
+.brand-name{
+    font-size:14px;
+    font-weight:bold;
+    letter-spacing:1px;
 }
 
-/* =========================
-   NAVBAR
-========================= */
-
-.navbar {
-  width: 100%;
-  max-width: 1180px;
-  margin: auto;
-  padding: 24px 25px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  position: relative;
-  z-index: 5;
+.brand-sub{
+    font-size:11px;
+    color:#8294a2;
+    margin-top:3px;
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 13px;
+.header-right{
+    font-size:12px;
+    color:#638092;
+    font-weight:bold;
 }
 
-.logo {
-  width: 52px;
-  height: 52px;
 
-  border-radius: 15px;
+/* HERO */
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.hero{
+    min-height:calc(100vh - 78px);
 
-  background: linear-gradient(
-    135deg,
-    #087fa3,
-    #20b89a
-  );
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-  color: white;
-  font-size: 17px;
-  font-weight: 800;
+    padding:50px 20px;
 
-  box-shadow:
-    0 10px 25px rgba(8, 127
+    position:relative;
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(32,183,157,.12),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(8,126,164,.12),
+            transparent 30%
+        ),
+        #f4f8fb;
+}
+
+.hero-content{
+    width:100%;
+    max-width:900px;
+    text-align:center;
+
+    position:relative;
+    z-index:2;
+}
+
+
+/* TOP LABEL */
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    padding:9px 16px;
+
+    border-radius:30px;
+
+    background:white;
+
+    border:1px solid #e1eaf0;
+
+    color:#087ea4;
+
+    font-size:11px;
+    font-weight:bold;
+    letter-spacing:1px;
+
+    box-shadow:0 8px 25px
+        rgba(20,60,80,.06);
+
+    margin-bottom:25px;
+}
+
+.badge-dot{
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:#20b79d;
+}
+
+
+/* TITLE */
+
+.title{
+    font-size:clamp(
+        40px,
+        6vw,
+        70px
+    );
+
+    line-height:1.05;
+
+    font-weight:900;
+
+    letter-spacing:-2px;
+
+    color:#16354d;
+
+    margin-bottom:20px;
+}
+
+.title span{
+    background:linear-gradient(
+        90deg,
+        #087ea4,
+        #20a88f
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
