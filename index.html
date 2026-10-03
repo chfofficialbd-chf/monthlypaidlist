@@ -14,269 +14,101 @@
     }
 
     body {
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: Arial, sans-serif;
       min-height: 100vh;
       background: #f5f7f9;
-      color: #222;
-    }
-
-    /* HEADER */
-
-    .header {
-      background: #ffffff;
-      border-bottom: 1px solid #e5e7eb;
-      padding: 15px 7%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .brand img {
-      width: 68px;
-      height: 68px;
-      object-fit: contain;
-    }
-
-    .brand-text h2 {
-      font-size: 21px;
-      color: #173b2f;
-      margin-bottom: 4px;
-    }
-
-    .brand-text p {
-      font-size: 13px;
-      color: #777;
-    }
-
-    .header-right {
-      color: #777;
-      font-size: 13px;
-    }
-
-    /* MAIN */
-
-    .main {
-      min-height: calc(100vh - 100px);
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 45px 20px;
+      color: #222;
     }
 
-    .portal {
+    .card {
       width: 100%;
-      max-width: 1000px;
-      background: #fff;
-      border-radius: 18px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-    }
-
-    /* LEFT */
-
-    .welcome {
-      padding: 60px 55px;
-      background: linear-gradient(145deg, #0d6b50, #07533e);
-      color: white;
-      position: relative;
-    }
-
-    .welcome:after {
-      content: "";
-      position: absolute;
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      border: 30px solid rgba(255,255,255,0.04);
-      right: -70px;
-      bottom: -70px;
-    }
-
-    .welcome img {
-      width: 110px;
-      height: 110px;
-      object-fit: contain;
-      background: white;
+      max-width: 460px;
+      background: #ffffff;
+      padding: 40px 35px;
       border-radius: 14px;
-      padding: 8px;
-      margin-bottom: 28px;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+      text-align: center;
+      margin: 20px;
     }
 
-    .welcome h1 {
-      font-size: 34px;
-      line-height: 1.2;
+    .logo {
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
       margin-bottom: 18px;
     }
 
-    .welcome p {
-      font-size: 15px;
-      line-height: 1.7;
-      color: #e2f0eb;
-      max-width: 450px;
-      margin-bottom: 28px;
+    .organization {
+      font-size: 18px;
+      font-weight: bold;
+      color: #0b654b;
+      margin-bottom: 8px;
     }
 
-    .line {
-      height: 2px;
-      width: 55px;
-      background: #f1c40f;
-      margin-bottom: 25px;
-    }
-
-    .welcome-info {
-      font-size: 14px;
-      line-height: 1.8;
-      color: #e4f3ee;
-    }
-
-    /* RIGHT */
-
-    .check-area {
-      padding: 60px 55px;
-      display: flex;
-      align-items: center;
-    }
-
-    .check-box {
-      width: 100%;
-    }
-
-    .check-box h2 {
-      font-size: 28px;
+    .title {
+      font-size: 22px;
+      font-weight: bold;
       color: #222;
-      margin-bottom: 10px;
+      line-height: 1.35;
+      margin-bottom: 30px;
     }
 
-    .check-box .sub {
-      color: #777;
-      font-size: 14px;
-      line-height: 1.6;
-      margin-bottom: 32px;
-    }
-
-    label {
+    .label {
       display: block;
+      text-align: left;
       font-size: 13px;
       font-weight: bold;
-      color: #333;
-      margin-bottom: 9px;
+      margin-bottom: 8px;
+      color: #444;
     }
 
     input {
       width: 100%;
-      height: 52px;
-      border: 1px solid #d8dee5;
-      border-radius: 9px;
-      padding: 0 16px;
+      height: 50px;
+      border: 1px solid #d5dbe0;
+      border-radius: 8px;
+      padding: 0 14px;
       font-size: 16px;
       outline: none;
-      transition: 0.2s;
+      margin-bottom: 14px;
     }
 
     input:focus {
-      border-color: #0d6b50;
-      box-shadow: 0 0 0 3px rgba(13,107,80,0.10);
+      border-color: #0b654b;
     }
 
     button {
       width: 100%;
-      height: 52px;
-      margin-top: 17px;
+      height: 50px;
       border: none;
-      border-radius: 9px;
-      background: #0d6b50;
+      border-radius: 8px;
+      background: #0b654b;
       color: white;
       font-size: 15px;
       font-weight: bold;
       cursor: pointer;
-      transition: 0.2s;
     }
 
     button:hover {
-      background: #09563f;
+      background: #084d3a;
     }
-
-    .help {
-      margin-top: 22px;
-      padding: 15px;
-      background: #f5f8f7;
-      border-left: 3px solid #0d6b50;
-      border-radius: 6px;
-      color: #666;
-      font-size: 12px;
-      line-height: 1.6;
-    }
-
-    /* FOOTER */
 
     .footer {
-      text-align: center;
-      color: #888;
-      font-size: 12px;
-      padding-bottom: 18px;
+      margin-top: 22px;
+      font-size: 11px;
+      color: #999;
     }
 
-    /* MOBILE */
-
-    @media (max-width: 760px) {
-
-      .header {
-        padding: 12px 20px;
+    @media (max-width: 500px) {
+      .card {
+        padding: 35px 25px;
       }
 
-      .header-right {
-        display: none;
-      }
-
-      .brand img {
-        width: 55px;
-        height: 55px;
-      }
-
-      .brand-text h2 {
-        font-size: 16px;
-      }
-
-      .brand-text p {
-        font-size: 11px;
-      }
-
-      .main {
-        padding: 20px 14px;
-        align-items: flex-start;
-      }
-
-      .portal {
-        grid-template-columns: 1fr;
-      }
-
-      .welcome {
-        padding: 40px 30px;
-      }
-
-      .welcome img {
-        width: 85px;
-        height: 85px;
-      }
-
-      .welcome h1 {
-        font-size: 28px;
-      }
-
-      .check-area {
-        padding: 40px 30px;
-      }
-
-      .check-box h2 {
-        font-size: 25px;
+      .title {
+        font-size: 19px;
       }
     }
   </style>
@@ -284,136 +116,55 @@
 
 <body>
 
-  <!-- HEADER -->
+  <div class="card">
 
-  <header class="header">
+    <img
+      class="logo"
+      src="https://raw.githubusercontent.com/chfofficialbd-chf/monthlypaidlist/main/Logo%20CHF.jpg"
+      alt="CHF Logo"
+    >
 
-    <div class="brand">
-
-      <img
-        src="https://raw.githubusercontent.com/chfofficialbd-chf/monthlypaidlist/main/Logo%20CHF.jpg"
-        alt="CHF Logo"
-      >
-
-      <div class="brand-text">
-        <h2>Charity Hope Foundation</h2>
-        <p>CHF Member Portal</p>
-      </div>
-
+    <div class="organization">
+      Charity Hope Foundation (CHF)
     </div>
 
-    <div class="header-right">
-      Member Monthly Payment Portal
+    <div class="title">
+      CHF MEMBER MONTHLY TK CHECK PORTAL
     </div>
 
-  </header>
+    <label class="label" for="chfId">
+      Enter Your CHF ID
+    </label>
 
+    <input
+      type="text"
+      id="chfId"
+      placeholder="Example: CHF-49"
+      autocomplete="off"
+    >
 
-  <!-- MAIN -->
+    <button onclick="checkPayment()">
+      CHECK PAYMENT
+    </button>
 
-  <main class="main">
-
-    <div class="portal">
-
-      <!-- WELCOME -->
-
-      <section class="welcome">
-
-        <img
-          src="https://raw.githubusercontent.com/chfofficialbd-chf/monthlypaidlist/main/Logo%20CHF.jpg"
-          alt="CHF Logo"
-        >
-
-        <div class="line"></div>
-
-        <h1>
-          CHF MEMBER<br>
-          MONTHLY TK<br>
-          CHECK PORTAL
-        </h1>
-
-        <p>
-          Welcome to the Charity Hope Foundation
-          member payment portal.
-        </p>
-
-        <div class="welcome-info">
-          Check your monthly membership payment,
-          payment history and due months using
-          your CHF Member ID.
-        </div>
-
-      </section>
-
-
-      <!-- CHECK -->
-
-      <section class="check-area">
-
-        <div class="check-box">
-
-          <h2>Check Your Payment</h2>
-
-          <p class="sub">
-            Enter your CHF Member ID below to view
-            your monthly payment information.
-          </p>
-
-          <label for="chfId">
-            CHF MEMBER ID
-          </label>
-
-          <input
-            id="chfId"
-            type="text"
-            placeholder="Example: CHF-49"
-            autocomplete="off"
-          >
-
-          <button onclick="checkPayment()">
-            CHECK PAYMENT
-          </button>
-
-          <div class="help">
-            Please enter your CHF ID correctly.
-            Your payment details will appear after
-            the payment system is connected.
-          </div>
-
-        </div>
-
-      </section>
-
+    <div class="footer">
+      © 2026 Charity Hope Foundation (CHF)
     </div>
 
-  </main>
-
-
-  <div class="footer">
-    © 2026 Charity Hope Foundation (CHF) · All Rights Reserved
   </div>
 
-
   <script>
-
     function checkPayment() {
 
-      const id = document
-        .getElementById("chfId")
-        .value
-        .trim();
+      const id = document.getElementById("chfId").value.trim();
 
       if (id === "") {
-        alert("Please enter your CHF Member ID.");
+        alert("Please enter your CHF ID.");
         return;
       }
 
-      alert(
-        "Payment checking system will be connected here.\n\nCHF ID: " + id
-      );
-
+      alert("CHF ID: " + id);
     }
-
   </script>
 
 </body>
