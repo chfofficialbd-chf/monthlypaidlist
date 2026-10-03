@@ -3,11 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>CHF Member Payment Details</title>
 
   <style>
-
     * {
       box-sizing: border-box;
     }
@@ -213,7 +211,6 @@
     }
 
     @media (max-width: 700px) {
-
       .member-info {
         grid-template-columns: 1fr;
       }
@@ -225,12 +222,9 @@
       .title {
         font-size: 23px;
       }
-
     }
-
   </style>
 </head>
-
 
 <body>
 
@@ -242,10 +236,7 @@
       Loading member information...
     </div>
 
-
     <div id="content" style="display:none;">
-
-      <!-- TOP -->
 
       <div class="top">
 
@@ -271,47 +262,18 @@
       <div class="member-info">
 
         <div class="info-box">
-
-          <div class="label">
-            CHF ID
-          </div>
-
-          <div
-            class="value"
-            id="chfId">
-            -
-          </div>
-
+          <div class="label">CHF ID</div>
+          <div class="value" id="chfId">-</div>
         </div>
 
-
         <div class="info-box">
-
-          <div class="label">
-            MEMBER NAME
-          </div>
-
-          <div
-            class="value"
-            id="memberName">
-            -
-          </div>
-
+          <div class="label">MEMBER NAME</div>
+          <div class="value" id="memberName">-</div>
         </div>
 
-
         <div class="info-box">
-
-          <div class="label">
-            MEMBER DESIGNATION
-          </div>
-
-          <div
-            class="value"
-            id="designation">
-            -
-          </div>
-
+          <div class="label">MEMBER DESIGNATION</div>
+          <div class="value" id="designation">-</div>
         </div>
 
       </div>
@@ -329,14 +291,15 @@
 
           <div
             class="status-main"
-            id="paymentStatus">
+            id="paymentStatus"
+          >
             Checking...
           </div>
 
           <div
             class="status-sub"
-            id="statusText">
-          </div>
+            id="statusText"
+          ></div>
 
         </div>
 
@@ -355,7 +318,8 @@
 
           <div
             class="status-main last-paid"
-            id="lastPaid">
+            id="lastPaid"
+          >
             -
           </div>
 
@@ -376,7 +340,8 @@
 
           <div
             class="status-main next-payment"
-            id="nextPayment">
+            id="nextPayment"
+          >
             -
           </div>
 
@@ -421,35 +386,16 @@
               <thead>
 
                 <tr>
-
-                  <th>
-                    Month
-                  </th>
-
-                  <th>
-                    Payment Date
-                  </th>
-
-                  <th>
-                    Method
-                  </th>
-
-                  <th>
-                    Receiver
-                  </th>
-
-                  <th>
-                    Amount
-                  </th>
-
+                  <th>Month</th>
+                  <th>Payment Date</th>
+                  <th>Method</th>
+                  <th>Receiver</th>
+                  <th>Amount</th>
                 </tr>
 
               </thead>
 
-
-              <tbody id="paymentHistory">
-
-              </tbody>
+              <tbody id="paymentHistory"></tbody>
 
             </table>
 
@@ -460,7 +406,7 @@
       </div>
 
 
-      <!-- DUE / UNPAID -->
+      <!-- DUE MONTHS -->
 
       <div class="section">
 
@@ -470,25 +416,20 @@
 
         <div
           class="due-box"
-          id="dueMonths">
-
+          id="dueMonths"
+        >
           Checking...
-
         </div>
 
       </div>
 
 
-      <!-- BACK -->
-
       <button
         class="back-btn"
-        onclick="goBack()">
-
+        onclick="goBack()"
+      >
         ← BACK
-
       </button>
-
 
     </div>
 
@@ -496,8 +437,8 @@
     <div
       id="error"
       class="error"
-      style="display:none;">
-    </div>
+      style="display:none;"
+    ></div>
 
   </div>
 
@@ -506,16 +447,20 @@
 
 <script>
 
-
 const API_URL =
 "https://script.google.com/macros/s/AKfycbwxXusjp382Z9aeuPxuIpLJYGx8FJd0qH_C6eBcdGuGoEa41ISnle1Ucp1SE-voIw3ruA/exec";
 
 
+/* =========================
+   ONLY 2026
+========================= */
 
-/*
-  Convert date to:
-  October 2026
-*/
+const REPORT_YEAR = 2026;
+
+
+/* =========================
+   MONTH NAME
+========================= */
 
 function monthName(date) {
 
@@ -530,31 +475,16 @@ function monthName(date) {
 }
 
 
-
-/*
-  Convert payment MONTH value
-  into a comparable month key.
-
-  Example:
-  Jan-26
-  2026-01-25
-  January 2026
-*/
+/* =========================
+   MONTH KEY
+========================= */
 
 function getMonthKey(value) {
 
-  if (!value) {
-    return null;
-  }
-
+  if (!value) return null;
 
   const text =
     value.toString().trim();
-
-
-  /*
-    Try normal date
-  */
 
   const date =
     new Date(text);
@@ -562,20 +492,21 @@ function getMonthKey(value) {
 
   if (!isNaN(date.getTime())) {
 
+    const year =
+      date.getFullYear();
+
+    const month =
+      date.getMonth() + 1;
+
+
     return (
-      date.getFullYear() +
+      year +
       "-" +
-      String(
-        date.getMonth() + 1
-      ).padStart(2, "0")
+      String(month).padStart(2, "0")
     );
 
   }
 
-
-  /*
-    Try Jan-26 format
-  */
 
   const match =
     text.match(
@@ -586,6 +517,7 @@ function getMonthKey(value) {
   if (match) {
 
     const months = {
+
       Jan: 0,
       Feb: 1,
       Mar: 2,
@@ -598,6 +530,7 @@ function getMonthKey(value) {
       Oct: 9,
       Nov: 10,
       Dec: 11
+
     };
 
 
@@ -608,15 +541,13 @@ function getMonthKey(value) {
     if (month !== undefined) {
 
       const year =
-        2000 +
-        Number(match[2]);
+        2000 + Number(match[2]);
 
 
       return (
         year +
         "-" +
-        String(month + 1)
-          .padStart(2, "0")
+        String(month + 1).padStart(2, "0")
       );
 
     }
@@ -629,20 +560,17 @@ function getMonthKey(value) {
 }
 
 
-
-/*
-  Convert key to readable month
-*/
+/* =========================
+   KEY TO MONTH
+========================= */
 
 function keyToMonth(key) {
 
   const parts =
     key.split("-");
 
-
   const year =
     Number(parts[0]);
-
 
   const month =
     Number(parts[1]) - 1;
@@ -661,24 +589,22 @@ function keyToMonth(key) {
 }
 
 
-
-/*
-  Format normal date
-*/
+/* =========================
+   FORMAT DATE
+========================= */
 
 function formatDate(value) {
 
-  if (!value) {
-    return "-";
-  }
-
+  if (!value) return "-";
 
   const date =
     new Date(value);
 
 
   if (isNaN(date.getTime())) {
+
     return value;
+
   }
 
 
@@ -694,30 +620,11 @@ function formatDate(value) {
 }
 
 
+/* =========================
+   2026 DUE MONTHS
+========================= */
 
-/*
-  Calculate unpaid months.
-
-  IMPORTANT:
-
-  Current running month is NOT included.
-
-  Example:
-
-  Current = October
-
-  We check only:
-  January → September
-
-  And we never check months
-  before joining date.
-*/
-
-function calculateDueMonths(
-  joiningDate,
-  payments
-) {
-
+function calculateDueMonths(payments) {
 
   const today =
     new Date();
@@ -726,99 +633,92 @@ function calculateDueMonths(
   const currentYear =
     today.getFullYear();
 
-
   const currentMonth =
     today.getMonth();
 
 
   /*
-    Start date
 
-    If joining date exists,
-    start from joining month.
+     ONLY 2026
 
-    Otherwise start from January
-    of current year.
+     Start:
+     January 2026
+
+     End:
+     Current month
+
+     Current running month
+     is NOT counted.
+
   */
 
-  let startDate;
 
-
-  if (joiningDate) {
-
-    const jd =
-      new Date(joiningDate);
-
-
-    if (!isNaN(jd.getTime())) {
-
-      startDate =
-        new Date(
-          jd.getFullYear(),
-          jd.getMonth(),
-          1
-        );
-
-    }
-
-  }
-
-
-  if (!startDate) {
-
-    startDate =
-      new Date(
-        currentYear,
-        0,
-        1
-      );
-
-  }
-
-
-  /*
-    We only check months BEFORE
-    current running month.
-  */
-
-  const endDate =
+  const startDate =
     new Date(
-      currentYear,
-      currentMonth,
+      REPORT_YEAR,
+      0,
       1
     );
 
 
-  /*
-    Create a list of paid months
-  */
+  const endDate =
+    currentYear === REPORT_YEAR
+
+      ? new Date(
+          REPORT_YEAR,
+          currentMonth,
+          1
+        )
+
+      : currentYear > REPORT_YEAR
+
+        ? new Date(
+            REPORT_YEAR,
+            12,
+            1
+          )
+
+        : new Date(
+            REPORT_YEAR,
+            0,
+            1
+          );
+
 
   const paidMonths =
     new Set();
 
 
-  payments.forEach(
-    function(payment) {
+  /*
+     ONLY PAYMENT MONTHS
+     FROM 2026
+  */
 
-      const key =
-        getMonthKey(
-          payment.month
-        );
+  payments.forEach(function(payment) {
+
+    const key =
+      getMonthKey(
+        payment.month
+      );
 
 
-      if (key) {
+    if (!key) return;
 
-        paidMonths.add(key);
 
-      }
+    const year =
+      Number(
+        key.split("-")[0]
+      );
+
+
+    if (year === REPORT_YEAR) {
+
+      paidMonths.add(key);
 
     }
-  );
 
+  });
 
-  /*
-    Find unpaid months
-  */
 
   const dueMonths = [];
 
@@ -827,33 +727,34 @@ function calculateDueMonths(
     new Date(startDate);
 
 
-  while (checkDate < endDate) {
+  while (
+    checkDate < endDate
+  ) {
 
     const key =
-      checkDate.getFullYear() +
+
+      REPORT_YEAR +
       "-" +
       String(
         checkDate.getMonth() + 1
       ).padStart(2, "0");
 
 
-    /*
-      Only show if member did NOT pay
-    */
-
-    if (!paidMonths.has(key)) {
+    if (
+      !paidMonths.has(key)
+    ) {
 
       dueMonths.push({
+
         key: key,
-        name: monthName(checkDate)
+
+        name:
+          monthName(checkDate)
+
       });
 
     }
 
-
-    /*
-      Next month
-    */
 
     checkDate.setMonth(
       checkDate.getMonth() + 1
@@ -867,10 +768,10 @@ function calculateDueMonths(
 }
 
 
-
-/*
-  Find last paid month
-*/
+/* =========================
+   LAST PAID
+   ONLY 2026
+========================= */
 
 function getLastPaidMonth(payments) {
 
@@ -884,32 +785,46 @@ function getLastPaidMonth(payments) {
   }
 
 
-  let latestKey = null;
+  let latestKey =
+    null;
 
 
-  payments.forEach(
-    function(payment) {
+  payments.forEach(function(payment) {
 
-      const key =
-        getMonthKey(
-          payment.month
-        );
+    const key =
+      getMonthKey(
+        payment.month
+      );
 
 
-      if (
-        key &&
-        (
-          !latestKey ||
-          key > latestKey
-        )
-      ) {
+    if (!key) return;
 
-        latestKey = key;
 
-      }
+    const year =
+      Number(
+        key.split("-")[0]
+      );
+
+
+    if (
+      year !== REPORT_YEAR
+    ) {
+
+      return;
 
     }
-  );
+
+
+    if (
+      !latestKey ||
+      key > latestKey
+    ) {
+
+      latestKey = key;
+
+    }
+
+  });
 
 
   return latestKey;
@@ -917,22 +832,14 @@ function getLastPaidMonth(payments) {
 }
 
 
-
-/*
-  Next payment month
-
-  If last paid = September
-  next = October.
-
-  If no payment:
-  next = joining month/current relevant month.
-*/
+/* =========================
+   NEXT PAYMENT
+   ONLY 2026
+========================= */
 
 function getNextPaymentMonth(
-  lastPaidKey,
-  joiningDate
+  lastPaidKey
 ) {
-
 
   const today =
     new Date();
@@ -954,36 +861,24 @@ function getNextPaymentMonth(
         1
       );
 
-  } else if (joiningDate) {
-
-    const jd =
-      new Date(joiningDate);
-
-
-    if (!isNaN(jd.getTime())) {
-
-      date =
-        new Date(
-          jd.getFullYear(),
-          jd.getMonth(),
-          1
-        );
-
-    }
-
-  }
-
-
-  if (!date) {
+  } else {
 
     date =
       new Date(
-        today.getFullYear(),
-        today.getMonth(),
+        REPORT_YEAR,
+        0,
         1
       );
 
   }
+
+
+  /*
+     If next payment goes
+     beyond 2026, show
+     January 2027 only when
+     appropriate.
+  */
 
 
   return monthName(date);
@@ -991,10 +886,9 @@ function getNextPaymentMonth(
 }
 
 
-
-/*
-  Show error
-*/
+/* =========================
+   SHOW ERROR
+========================= */
 
 function showError(message) {
 
@@ -1014,7 +908,8 @@ function showError(message) {
     );
 
 
-  error.style.display = "block";
+  error.style.display =
+    "block";
 
 
   error.innerText =
@@ -1023,13 +918,11 @@ function showError(message) {
 }
 
 
-
-/*
-  Load member
-*/
+/* =========================
+   LOAD MEMBER
+========================= */
 
 async function loadMember() {
-
 
   const params =
     new URLSearchParams(
@@ -1053,7 +946,6 @@ async function loadMember() {
 
 
   try {
-
 
     const response =
       await fetch(
@@ -1081,9 +973,7 @@ async function loadMember() {
     }
 
 
-    /*
-      MEMBER INFO
-    */
+    /* MEMBER INFO */
 
     document.getElementById(
       "chfId"
@@ -1104,49 +994,96 @@ async function loadMember() {
 
 
     /*
-      TOTAL PAID
+       ALL PAYMENT DATA
     */
+
+    const allPayments =
+      data.payments || [];
+
+
+    /*
+       ONLY 2026 PAYMENTS
+    */
+
+    const payments2026 =
+      allPayments.filter(
+        function(payment) {
+
+          const key =
+            getMonthKey(
+              payment.month
+            );
+
+
+          if (!key) {
+            return false;
+          }
+
+
+          const year =
+            Number(
+              key.split("-")[0]
+            );
+
+
+          return (
+            year === REPORT_YEAR
+          );
+
+        }
+      );
+
+
+    /* TOTAL PAID — ONLY 2026 */
+
+    let totalPaid =
+      0;
+
+
+    payments2026.forEach(
+      function(payment) {
+
+        totalPaid +=
+          Number(
+            payment.amount
+          ) || 0;
+
+      }
+    );
+
 
     document.getElementById(
       "totalPaid"
     ).innerText =
-      Number(
-        data.totalPaid || 0
-      ).toLocaleString();
+      totalPaid.toLocaleString();
 
 
-    /*
-      PAYMENT STATUS
-    */
+    /* PAYMENT STATUS */
 
     if (
-      data.payments &&
-      data.payments.length > 0
+      payments2026.length > 0
     ) {
 
       document.getElementById(
         "paymentStatus"
       ).innerText =
-        "Payment Record Found";
-
+        "2026 Payment Record Found";
 
     } else {
 
       document.getElementById(
         "paymentStatus"
       ).innerText =
-        "No Payment Record";
+        "No 2026 Payment Record";
 
     }
 
 
-    /*
-      LAST PAID
-    */
+    /* LAST PAID */
 
     const lastPaidKey =
       getLastPaidMonth(
-        data.payments || []
+        payments2026
       );
 
 
@@ -1164,19 +1101,16 @@ async function loadMember() {
       document.getElementById(
         "lastPaid"
       ).innerText =
-        "No payment yet";
+        "No 2026 payment yet";
 
     }
 
 
-    /*
-      NEXT PAYMENT
-    */
+    /* NEXT PAYMENT */
 
     const nextPayment =
       getNextPaymentMonth(
-        lastPaidKey,
-        data.member.joiningDate
+        lastPaidKey
       );
 
 
@@ -1186,9 +1120,7 @@ async function loadMember() {
       nextPayment;
 
 
-    /*
-      PAYMENT HISTORY
-    */
+    /* PAYMENT HISTORY */
 
     const history =
       document.getElementById(
@@ -1196,18 +1128,16 @@ async function loadMember() {
       );
 
 
-    history.innerHTML = "";
+    history.innerHTML =
+      "";
 
 
     if (
-      data.payments &&
-      data.payments.length > 0
+      payments2026.length > 0
     ) {
 
-
-      data.payments.forEach(
+      payments2026.forEach(
         function(payment) {
-
 
           const row =
             document.createElement(
@@ -1244,14 +1174,14 @@ async function loadMember() {
           `;
 
 
-          history.appendChild(row);
+          history.appendChild(
+            row
+          );
 
         }
       );
 
-
     } else {
-
 
       history.innerHTML = `
 
@@ -1259,9 +1189,10 @@ async function loadMember() {
 
           <td
             colspan="5"
-            style="text-align:center;">
+            style="text-align:center;"
+          >
 
-            No payment history found
+            No 2026 payment history found
 
           </td>
 
@@ -1272,14 +1203,11 @@ async function loadMember() {
     }
 
 
-    /*
-      DUE / UNPAID MONTHS
-    */
+    /* DUE MONTHS */
 
     const dueMonths =
       calculateDueMonths(
-        data.member.joiningDate,
-        data.payments || []
+        payments2026
       );
 
 
@@ -1289,29 +1217,28 @@ async function loadMember() {
       );
 
 
-    dueBox.innerHTML = "";
+    dueBox.innerHTML =
+      "";
 
 
     if (
       dueMonths.length === 0
     ) {
 
-
       dueBox.innerHTML = `
 
         <div class="no-due">
-          ✓ No unpaid previous months
+
+          ✓ No unpaid previous months in 2026
+
         </div>
 
       `;
 
-
     } else {
-
 
       dueMonths.forEach(
         function(month) {
-
 
           const span =
             document.createElement(
@@ -1337,22 +1264,29 @@ async function loadMember() {
     }
 
 
-    /*
-      STATUS TEXT
-    */
+    /* STATUS TEXT */
 
-    document.getElementById(
-      "statusText"
-    ).innerText =
+    if (
       dueMonths.length > 0
-      ? dueMonths.length +
-        " previous month(s) unpaid."
-      : "All previous months are paid.";
+    ) {
+
+      document.getElementById(
+        "statusText"
+      ).innerText =
+        dueMonths.length +
+        " previous month(s) unpaid in 2026.";
+
+    } else {
+
+      document.getElementById(
+        "statusText"
+      ).innerText =
+        "All previous months in 2026 are paid.";
+
+    }
 
 
-    /*
-      SHOW CONTENT
-    */
+    /* SHOW PAGE */
 
     document.getElementById(
       "loading"
@@ -1368,7 +1302,6 @@ async function loadMember() {
 
   } catch (error) {
 
-
     console.error(error);
 
 
@@ -1381,10 +1314,9 @@ async function loadMember() {
 }
 
 
-
-/*
-  BACK BUTTON
-*/
+/* =========================
+   BACK
+========================= */
 
 function goBack() {
 
@@ -1394,10 +1326,7 @@ function goBack() {
 }
 
 
-
-/*
-  START
-*/
+/* START */
 
 loadMember();
 
