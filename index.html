@@ -38,8 +38,6 @@
       border: 1px solid #e5eef7;
     }
 
-    /* CHF LOGO */
-
     .logo {
       width: 100px;
       height: 100px;
@@ -100,6 +98,7 @@
       transition: 0.3s;
       margin-bottom: 16px;
       text-align: center;
+      text-transform: uppercase;
     }
 
     .input-box:focus {
@@ -125,6 +124,12 @@
       box-shadow: 0 8px 20px rgba(8, 123, 184, 0.25);
     }
 
+    .check-btn:disabled {
+      opacity: 0.7;
+      cursor: wait;
+      transform: none;
+    }
+
     .info {
       margin-top: 25px;
       padding: 15px;
@@ -134,8 +139,6 @@
       line-height: 1.6;
       color: #668095;
     }
-
-    /* CONTACT AREA */
 
     .contact {
       margin-top: 20px;
@@ -208,8 +211,6 @@
       color: #91a4b3;
     }
 
-    /* MOBILE */
-
     @media (max-width: 480px) {
 
       body {
@@ -265,7 +266,6 @@
         font-size: 9px;
       }
     }
-
   </style>
 </head>
 
@@ -324,6 +324,7 @@
       <!-- CHECK BUTTON -->
 
       <button
+        id="checkBtn"
         class="check-btn"
         onclick="checkPayment()"
       >
@@ -395,50 +396,161 @@
 
     async function checkPayment() {
 
+      const input =
+        document.getElementById("chfId");
+
+      const button =
+        document.getElementById("checkBtn");
+
       const chfId =
-        document.getElementById("chfId").value.trim();
+        input.value.trim().toUpperCase();
+
+
+      // Empty ID check
 
       if (chfId === "") {
 
         alert("Please enter your CHF ID.");
 
+        input.focus();
+
         return;
       }
+
+
+      // Basic CHF-ID format
+
+      if (!/^CHF-\d+$/i.test(chfId)) {
+
+        alert(
+          "Please enter a valid CHF ID.\nExample: CHF-49"
+        );
+
+        input.focus();
+
+        return;
+      }
+
+
+      // API URL
 
       const apiUrl =
         "https://script.google.com/macros/s/AKfycbwxXusjp382Z9aeuPxuIpLJYGx8FJd0qH_C6eBcdGuGoEa41ISnle1Ucp1SE-voIw3ruA/exec?id="
         + encodeURIComponent(chfId);
 
+
       try {
 
-        const response = await fetch(apiUrl);
+        // Button loading state
 
-        const data = await response.json();
+        button.disabled = true;
+
+        button.innerText = "CHECKING...";
+
+
+        // Call API
+
+        const response =
+          await fetch(apiUrl);
+
+
+        const data =
+          await response.json();
+
+
+        // API error
 
         if (!data.success) {
 
-          alert(data.message);
+          alert(
+            "CHF ID: " + chfId +
+            "\n\n" +
+            data.message
+          );
 
           return;
         }
 
-        alert(
+
+        // Payment information
+
+        let message =
           "CHF ID: " + data.chfId +
-          "\nName: " + data.memberName +
-          "\nTotal Payments: " + data.totalPayments
-        );
+          "\n" +
+          "Name: " + data.memberName +
+          "\n" +
+          "Total Payments: " + data.totalPayments;
+
+
+        // Show payment records
+
+        if (
+          data.payments &&
+          data.payments.length > 0
+        ) {
+
+          message += "\n\nPayment History:\n";
+
+          data.payments.forEach(
+            function(payment, index) {
+
+              message +=
+                "\n" +
+                (index + 1) +
+                ". " +
+                payment.month +
+                " - ৳" +
+                payment.amount +
+                " - " +
+                payment.paymentMethod;
+
+            }
+          );
+
+        }
+
+
+        alert(message);
+
 
       } catch (error) {
 
+        console.error(error);
+
         alert(
-          "Unable to connect to payment system."
+          "Unable to connect to payment system.\n\nPlease try again later."
         );
 
-        console.error(error);
+
+      } finally {
+
+        // Restore button
+
+        button.disabled = false;
+
+        button.innerText = "CHECK PAYMENT";
 
       }
 
     }
+
+
+    // Press ENTER to check
+
+    document
+      .getElementById("chfId")
+      .addEventListener(
+        "keydown",
+        function(event) {
+
+          if (event.key === "Enter") {
+
+            checkPayment();
+
+          }
+
+        }
+      );
 
   </script>
 
