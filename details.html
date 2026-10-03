@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>CHF Member Details</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #222;
+    }
+
+    .container {
+      max-width: 850px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 30px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+    }
+
+    .top {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+    }
+
+    .title {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: #666;
+      font-size: 15px;
+    }
+
+    .member-info {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .info-box {
+      background: #f8f9fc;
+      border-radius: 12px;
+      padding: 18px;
+      border: 1px solid #e8eaf0;
+    }
+
+    .label {
+      font-size: 13px;
+      color: #777;
+      margin-bottom: 6px;
+    }
+
+    .value {
+      font-size: 18px;
+      font-weight: bold;
+      word-break: break-word;
+    }
+
+    .section {
+      margin-top: 25px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .status-box {
+      padding: 18px;
+      border-radius: 12px;
+      background: #f8f9fc;
+      border: 1px solid #e8eaf0;
+      font-size: 17px;
+      font-weight: bold;
+    }
+
+    .total-paid {
+      font-size: 26px;
+      font-weight: bold;
+    }
+
+    .payment-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    .payment-table th,
+    .payment-table td {
+      padding: 12px 10px;
+      border-bottom: 1px solid #eee;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    .payment-table th {
+      background: #f5f7fb;
+    }
+
+    .due-box {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .due-month {
+      display: inline-block;
+      background: #fff;
+      border: 1px solid #fdba74;
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin: 5px;
+      font-size: 14px;
+    }
+
+    .no-due {
+      color: #16803c;
+      font-weight: bold;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 50px;
+      font-size: 18px;
+    }
+
+    .error {
+      text-align: center;
+      padding: 40px;
+      color: #c62828;
+      font-weight: bold;
+    }
+
+    .back-btn {
+      display: block;
+      width: 100%;
+      margin-top: 25px;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      background: #222;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 15px auto;
+        padding: 10px;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      .member-info {
+        grid-template-columns: 1fr;
+      }
+
+      .title {
+        font-size: 23px;
+      }
+
+      .payment-table {
+        font-size: 12px;
+      }
+
+      .payment-table th,
+      .payment-table td {
+        padding: 9px 5px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="card">
+
+      <div id="loading" class="loading">
+        Loading member information...
+      </div>
+
+      <div id="content" style="display:none;">
+
+        <!-- TOP -->
+        <div class="top">
+
+          <img
+            class="logo"
+            src="https://raw.githubusercontent.com/chfofficialbd-chf/monthlypaidlist/main/Logo%20CHF.jpg"
+            alt="CHF Logo"
+          >
+
+          <div class="title">
+            CHF MEMBER PAYMENT DETAILS
+          </div>
+
+          <div class="subtitle">
+            Charity Hope Foundation (CHF)
+          </div>
+
+        </div>
+
+
+        <!-- MEMBER INFORMATION -->
+
+        <div class="member-info">
+
+          <div class="info-box">
+            <div class="label">CHF ID</div>
+            <div class="value" id="chfId">-</div>
+          </div>
+
+          <div class="info-box">
+            <div class="label">Member Name</div>
+            <div class="value" id="memberName">-</div>
+          </div>
+
+          <div class="info-box">
+            <div class="label">Member Designation</div>
+            <div class="value" id="designation">-</div>
+          </div>
+
+          <div class="info-box">
+            <div class="label">📧 Email</div>
+            <div class="value" id="email">-</div>
+          </div>
+
+        </div>
+
+
+        <!-- PAYMENT STATUS -->
+
+        <div class="section">
+
+          <div class="section-title">
+            💳 Payment Status
+          </div>
+
+          <div class="status-box" id="paymentStatus">
+            Checking...
+          </div>
+
+        </div>
+
+
+        <!-- TOTAL PAID -->
+
+        <div class="section">
+
+          <div class="section-title">
+            💰 Total Paid
+          </div>
+
+          <div class="status-box">
+
+            <div class="total-paid">
+              ৳ <span id="totalPaid">0</span>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- PAYMENT HISTORY -->
+
+        <div class="section">
+
+          <div class="section-title">
+            📋 Payment History
+          </div>
+
+          <div class="status-box">
+
+            <div style="overflow-x:auto;">
+
+              <table class="payment-table">
+
+                <thead>
+
+                  <tr>
+                    <th>Month</th>
+                    <th>Payment Date</th>
+                    <th>Method</th>
+                    <th>Receiver</th>
+                    <th>Amount</th>
+                  </tr>
+
+                </thead>
+
+                <tbody id="paymentHistory">
+
+                </tbody>
+
+              </table>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- DUE -->
+
+        <div class="section">
+
+          <div class="section-title">
+            ⚠️ Due / Unpaid Months
+          </div>
+
+          <div class="due-box" id="dueMonths">
+
+            Checking...
+
+          </div>
+
+        </div>
+
+
+        <button
+          class="back-btn"
+          onclick="goBack()"
+        >
+          ← BACK
+        </button>
+
+      </div>
+
+
+      <div id="error" class="error" style="display:none;"></div>
+
+    </div>
+
+  </div>
+
+
+<script>
+
+const API_URL =
+"https://script.google.com/macros/s/AKfycbwxXusjp382Z9aeuPxuIpLJYGx8FJd0qH_C6eBcdGuGoEa41ISnle1Ucp1SE-voIw3ruA/exec";
+
+
+function formatDate(value) {
+
+  if (!value) return "-";
+
+  const date = new Date(value);
+
+  if (isNaN(date.getTime())) {
+    return value;
+  }
+
+  return date.toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric"
+  });
+
+}
+
+
+function formatMonth(value) {
+
+  if (!value) return "-";
+
+  const date = new Date(value);
+
+  if (isNaN(date.getTime())) {
+    return value;
+  }
+
+  return date.toLocaleDateString("en-GB", {
+    month: "short",
+    year: "numeric"
+  });
+
+}
+
+
+function showError(message) {
+
+  document.getElementById("loading").style.display = "none";
+
+  document.getElementById("content").style.display = "none";
+
+  const error =
+    document.getElementById("error");
+
+  error.style.display = "block";
+
+  error.innerText = message;
+
+}
+
+
+async function loadMember() {
+
+  const params =
+    new URLSearchParams(window.location.search);
+
+  const chfId =
+    params.get("id");
+
+
+  if (!chfId) {
+
+    showError("CHF ID not provided.");
+
+    return;
+
+  }
+
+
+  try {
+
+    const response =
+      await fetch(
+        API_URL +
+        "?id=" +
+        encodeURIComponent(chfId)
+      );
+
+
+    const data =
+      await response.json();
+
+
+    if (!data.success) {
+
+      showError(
+        data.message ||
+        "Member information not found."
+      );
+
+      return;
+
+    }
+
+
+    // MEMBER INFORMATION
+
+    document.getElementById("chfId").innerText =
+      data.member.chfId || "-";
+
+
+    document.getElementById("memberName").innerText =
+      data.member.name || "-";
+
+
+    document.getElementById("designation").innerText =
+      data.member.designation || "-";
+
+
+    document.getElementById("email").innerText =
+      data.member.email || "-";
+
+
+    // TOTAL PAID
+
+    document.getElementById("totalPaid").innerText =
+      Number(data.totalPaid || 0).toLocaleString();
+
+
+    // PAYMENT STATUS
+
+    if (data.payments && data.payments.length > 0) {
+
+      document.getElementById("paymentStatus").innerText =
+        "Payment Record Found";
+
+    } else {
+
+      document.getElementById("paymentStatus").innerText =
+        "No Payment Record";
+
+    }
+
+
+    // PAYMENT HISTORY
+
+    const history =
+      document.getElementById("paymentHistory");
+
+    history.innerHTML = "";
+
+
+    if (
+      data.payments &&
+      data.payments.length > 0
+    ) {
+
+      data.payments.forEach(function(payment) {
+
+        const row =
+          document.createElement("tr");
+
+
+        row.innerHTML = `
+
+          <td>
+            ${formatMonth(payment.month)}
+          </td>
+
+          <td>
+            ${formatDate(payment.paymentDate)}
+          </td>
+
+          <td>
+            ${payment.paymentMethod || "-"}
+          </td>
+
+          <td>
+            ${payment.receiver || "-"}
+          </td>
+
+          <td>
+            ৳ ${Number(payment.amount || 0).toLocaleString()}
+          </td>
+
+        `;
+
+
+        history.appendChild(row);
+
+      });
+
+    } else {
+
+      history.innerHTML = `
+
+        <tr>
+          <td colspan="5" style="text-align:center;">
+            No payment history found
+          </td>
+        </tr>
+
+      `;
+
+    }
+
+
+    // DUE MONTHS
+
+    /*
+      এখন API থেকে Due Month-এর
+      আলাদা list আসছে না।
+
+      তাই আপাতত এখানে message দেখানো হচ্ছে।
+      পরের ধাপে আমরা automatic
+      unpaid month calculation যোগ করব।
+    */
+
+    document.getElementById("dueMonths").innerHTML = `
+
+      <div class="no-due">
+        Due calculation will be updated next.
+      </div>
+
+    `;
+
+
+    document.getElementById("loading").style.display =
+      "none";
+
+
+    document.getElementById("content").style.display =
+      "block";
+
+
+  } catch (error) {
+
+    console.error(error);
+
+    showError(
+      "Unable to load member information."
+    );
+
+  }
+
+}
+
+
+function goBack() {
+
+  window.location.href = "index.html";
+
+}
+
+
+loadMember();
+
+</script>
+
+</body>
+</html>
